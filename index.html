@@ -11,18 +11,18 @@
 
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.css"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/theme/white.min.css"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css"
       id="theme"
     />
 
     <style>
       /* You can add custom styles here if needed */
       .reveal .slides section {
-        text-align: center; /* Center text on the slide */
+        text-align: left; /* Center text on the slide */
       }
     </style>
   </head>
@@ -35,6 +35,16 @@
         </section>
 
         <section>
+          <h2>Who am I?</h2>
+
+          <ul>
+            <li>Information technology generalist.</li>
+            <li>Over 15 years of building information systems.</li>
+            <li>Worked in journalism for the last 4 years.</li>
+          </ul>
+        </section>
+
+        <section>
           <h2>What we'll cover today</h2>
           <ul>
             <li>What GraphRAG is, and how it works.</li>
@@ -44,23 +54,101 @@
         </section>
 
         <section>
-          <h2>Who are we?</h2>
+          <h2>So, what is GraphRAG?</h2>
+          <p class="fragment">What is a graph?</p>
+          <p class="fragment">And, what is RAG?</p>
+        </section>
+
+        <section>
+          <div class="r-stack">
+            <h2>What is a graph?</h2>
+            <div id="graph"></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>What is Retrieval Augmented Generation?</h2>
+          <p>Trying to augment a users prompt with relevant information.</p>
         </section>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
-    <script>
-      // More info about initialization & config:
-      // - https://revealjs.com/initialization/
-      // - https://revealjs.com/config/
+    <script type="module">
+      import "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.min.js";
+      import "https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js";
+
+      const response = await fetch(
+        "https://static.observableusercontent.com/files/e3680d5f766e85edde560c9c31a6dba2ddfcf2f66e1dced4afa18d8040f1f205e0bde1b8b234d866373f2bfc5806fafc47e244c5c9f48b60aaa1917c1b80fcb7?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27graph.json",
+      );
+
+      const data = await response.json();
+
+      // Specify the dimensions of the chart.
+      const width = 700;
+      const height = 700;
+
+      // Specify the color scale.
+      const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+      // The force simulation mutates links and nodes, so create a copy
+      // so that re-evaluating this cell produces the same result.
+      const links = data.links.map((d) => ({ ...d }));
+      const nodes = data.nodes.map((d) => ({ ...d }));
+
+      // Create a simulation with several forces.
+      const simulation = d3
+        .forceSimulation(nodes)
+        .force(
+          "link",
+          d3.forceLink(links).id((d) => d.id),
+        )
+        .force("charge", d3.forceManyBody())
+        .force("x", d3.forceX())
+        .force("y", d3.forceY());
+
+      // Create the SVG container.
+      const svg = d3
+        .select("#graph")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewBox", [-width / 2, -height / 2, width, height]);
+
+      // Add a line for each link, and a circle for each node.
+      const link = svg
+        .append("g")
+        .attr("stroke", "#999")
+        .attr("stroke-opacity", 0.6)
+        .selectAll("line")
+        .data(links)
+        .join("line")
+        .attr("stroke-width", (d) => Math.sqrt(d.value));
+
+      const node = svg
+        .append("g")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1.5)
+        .selectAll("circle")
+        .data(nodes)
+        .join("circle")
+        .attr("r", 5)
+        .attr("fill", (d) => color(d.group));
+
+      node.append("title").text((d) => d.id);
+
+      // Set the position attributes of links and nodes each time the simulation ticks.
+      simulation.on("tick", () => {
+        link
+          .attr("x1", (d) => d.source.x)
+          .attr("y1", (d) => d.source.y)
+          .attr("x2", (d) => d.target.x)
+          .attr("y2", (d) => d.target.y);
+
+        node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+      });
+
       Reveal.initialize({
-        hash: true,
-        controls: true,
-        progress: true,
         history: true,
-        // center: true,
-        // plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
     </script>
   </body>
