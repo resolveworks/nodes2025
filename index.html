@@ -16,13 +16,20 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css"
-      id="theme"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css"
     />
 
     <style>
       /* You can add custom styles here if needed */
       .reveal .slides section {
         text-align: left; /* Center text on the slide */
+      }
+
+      pre.vector {
+        font-size: 1rem;
       }
     </style>
   </head>
@@ -31,14 +38,14 @@
       <div class="slides">
         <section>
           <h1>Finding Connections</h1>
-          <p>Transform your document collections into a graph visualisation</p>
+          <p>Transform your document collections into a graph visualisation.</p>
         </section>
 
         <section>
           <h2>Who am I?</h2>
 
           <ul>
-            <li>Information technology generalist.</li>
+            <li>Freelance IT generalist.</li>
             <li>Over 15 years of building information systems.</li>
             <li>Worked in journalism for the last 4 years.</li>
           </ul>
@@ -49,33 +56,180 @@
           <ul>
             <li>What GraphRAG is, and how it works.</li>
             <li>How to get your documents ready.</li>
-            <li>Ways to extract a graph from your documents.</li>
+            <li>Extracting a graph from your documents.</li>
           </ul>
         </section>
 
         <section>
           <h2>So, what is GraphRAG?</h2>
+          <p class="fragment">
+            A way of getting better answers from a language model by using a
+            knowledge graph.
+          </p>
+        </section>
+
+        <section>
+          <h2>Graph + RAG</h2>
           <p class="fragment">What is a graph?</p>
           <p class="fragment">And, what is RAG?</p>
         </section>
 
         <section>
+          <p>So first things first...</p>
+        </section>
+
+        <section>
           <div class="r-stack">
             <h2>What is a graph?</h2>
-            <div id="graph"></div>
+            <div class="fragment" id="graph"></div>
           </div>
         </section>
 
         <section>
-          <h2>What is Retrieval Augmented Generation?</h2>
-          <p>Trying to augment a users prompt with relevant information.</p>
+          <p>Nodes and edges.</p>
+          <p class="fragment">
+            <strong>Or:</strong> Entities and their relations.
+          </p>
+        </section>
+
+        <section>
+          <!-- prettier-ignore -->
+          <div class="mermaid">
+              graph LR
+                style A fill:#f9f,stroke:#333,stroke-width:2px
+                style B fill:#bbf,stroke:#333,stroke-width:2px
+                style C fill:#bfb,stroke:#333,stroke-width:2px
+                style D fill:#fbf,stroke:#333,stroke-width:2px
+                style E fill:#ffb,stroke:#333,stroke-width:2px
+                style F fill:#fbb,stroke:#333,stroke-width:2px
+                style G fill:#bff,stroke:#333,stroke-width:2px
+
+                A[Company A]
+                B[Company B]
+                C[Person C]
+                D[Person D]
+                E[Transaction E]
+                F[Location F]
+                G[Bank G]
+
+                A -->|owns| B
+                B -->|employs| C
+                B -->|employs| D
+                C -->|initiated| E
+                D -->|authorized| E
+                E -->|processed at| G
+                E -->|occurred in| F
+
+            </div>
+        </section>
+
+        <section>
+          <h2>But what is RAG?</h2>
+          <p class="fragment">R(etrieval) A(ugmented) G(eneration)</p>
+          <p class="fragment">
+            Help the language model with relevant information
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <strong>1.</strong> Find relevant information that can be used to
+            answer your question
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <strong>2.</strong> Provide the language model with the retrieved
+            information alongside the question.
+          </p>
+        </section>
+
+        <section>
+          <p><strong>3.</strong> Get better answers.</p>
+        </section>
+
+        <section>
+          <h2>What is relevant?</h2>
+          <p>
+            How does the computer know what information is relevant to the
+            question?
+          </p>
+        </section>
+
+        <section>
+          <p>
+            By converting texts into numerical representations that can be
+            compared, usually Vectors
+          </p>
+
+          <p class="fragment">These are called <strong>embeddings</strong></p>
+        </section>
+
+        <section>
+          <p>
+            A vector is a <strong>coordinate in multidimensional space</strong>
+          </p>
+          <p class="fragment">
+            In other words, <strong>a list of numbers</strong>
+          </p>
+        </section>
+
+        <section>
+          <p>This conversion is done with "embedding models"</p>
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape class="language-python">
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
+sentence = "The sun is shining"
+embedding = model.encode(sentence)
+            </code></pre>
+        </section>
+
+        <section>
+          <p>So for example: "The sun is shining" would become...</p>
+        </section>
+
+        <section>
+          <pre class="vector">
+      0         1         2         3         4         5         6    \
+-0.023889  0.055259 -0.011655 -0.033414 -0.012261 -0.024873 -0.012663   
+
+      7         8         9    ...       374       375       376       377  \
+ 0.025346  0.018509 -0.083508  ... -0.161688 -0.046426  0.006004  0.005281   
+
+      378       379       380       381       382       383  
+-0.003342  0.027754  0.020411  0.005778  0.034098 -0.006889  
+
+[384 columns]
+
+            </pre
+          >
+        </section>
+
+        <section>
+          <p>Now that's a lot of numbers...</p>
+          <p class="fragment">So let's imagine we just have 2.</p>
         </section>
       </div>
     </div>
 
     <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
       import "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.min.js";
+      import "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js";
       import "https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js";
+
+      mermaid.initialize({
+        theme: "neutral",
+        themeVariables: {
+          fontSize: "3rem",
+        },
+      });
 
       const response = await fetch(
         "https://static.observableusercontent.com/files/e3680d5f766e85edde560c9c31a6dba2ddfcf2f66e1dced4afa18d8040f1f205e0bde1b8b234d866373f2bfc5806fafc47e244c5c9f48b60aaa1917c1b80fcb7?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27graph.json",
@@ -94,17 +248,6 @@
       // so that re-evaluating this cell produces the same result.
       const links = data.links.map((d) => ({ ...d }));
       const nodes = data.nodes.map((d) => ({ ...d }));
-
-      // Create a simulation with several forces.
-      const simulation = d3
-        .forceSimulation(nodes)
-        .force(
-          "link",
-          d3.forceLink(links).id((d) => d.id),
-        )
-        .force("charge", d3.forceManyBody())
-        .force("x", d3.forceX())
-        .force("y", d3.forceY());
 
       // Create the SVG container.
       const svg = d3
@@ -134,21 +277,38 @@
         .attr("r", 5)
         .attr("fill", (d) => color(d.group));
 
-      node.append("title").text((d) => d.id);
-
-      // Set the position attributes of links and nodes each time the simulation ticks.
-      simulation.on("tick", () => {
-        link
-          .attr("x1", (d) => d.source.x)
-          .attr("y1", (d) => d.source.y)
-          .attr("x2", (d) => d.target.x)
-          .attr("y2", (d) => d.target.y);
-
-        node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
-      });
-
       Reveal.initialize({
         history: true,
+        plugins: [RevealHighlight],
+      });
+
+      Reveal.on("fragmentshown", function (event) {
+        const fragment = event.fragment;
+        if (fragment.id === "graph" && !fragment.dataset.initialized) {
+          // Create a simulation with several forces.
+          const simulation = d3
+            .forceSimulation(nodes)
+            .force(
+              "link",
+              d3.forceLink(links).id((d) => d.id),
+            )
+            .force("charge", d3.forceManyBody())
+            .force("x", d3.forceX())
+            .force("y", d3.forceY());
+
+          // Set the position attributes of links and nodes each time the simulation ticks.
+          simulation.on("tick", () => {
+            link
+              .attr("x1", (d) => d.source.x)
+              .attr("y1", (d) => d.source.y)
+              .attr("x2", (d) => d.target.x)
+              .attr("y2", (d) => d.target.y);
+
+            node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+          });
+
+          fragment.dataset.initialized = "true";
+        }
       });
     </script>
   </body>
