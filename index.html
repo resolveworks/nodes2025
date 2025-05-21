@@ -30,6 +30,10 @@
       pre.unstyled {
         box-shadow: none;
       }
+
+      table td:nth-child(2) {
+        text-align: right;
+      }
     </style>
   </head>
   <body>
@@ -1086,7 +1090,8 @@ embedding = model.encode(sentence)
 
         <section>
           <p>
-            Usually this is calculated with <strong>Cosine Similarity</strong>
+            We can find similar vectors by calculating
+            <strong>Cosine Similarity</strong>
           </p>
         </section>
 
@@ -1326,6 +1331,33 @@ embedding = model.encode(sentence)
               </text>
             </g>
           </svg>
+        </section>
+
+        <section><p>So to come back to "The sun is shining"...</p></section>
+
+        <section>
+          <table>
+            <tr>
+              <th>Text</th>
+              <th>Similarity</th>
+            </tr>
+            <tr>
+              <td>Bring an umbrella</td>
+              <td>0.320</td>
+            </tr>
+            <tr>
+              <td>The weather is great</td>
+              <td>0.418</td>
+            </tr>
+            <tr>
+              <td>It's daytime</td>
+              <td>0.622</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <p>Congratulations, you made it through the theory! 🎉</p>
         </section>
       </div>
     </div>
