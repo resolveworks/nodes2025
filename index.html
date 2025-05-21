@@ -92,34 +92,860 @@
         </section>
 
         <section>
-          <!-- prettier-ignore -->
-          <div class="mermaid">
-              graph LR
-                style A fill:#f9f,stroke:#333,stroke-width:2px
-                style B fill:#bbf,stroke:#333,stroke-width:2px
-                style C fill:#bfb,stroke:#333,stroke-width:2px
-                style D fill:#fbf,stroke:#333,stroke-width:2px
-                style E fill:#ffb,stroke:#333,stroke-width:2px
-                style F fill:#fbb,stroke:#333,stroke-width:2px
-                style G fill:#bff,stroke:#333,stroke-width:2px
-
-                A[Company A]
-                B[Company B]
-                C[Person C]
-                D[Person D]
-                E[Transaction E]
-                F[Location F]
-                G[Bank G]
-
-                A -->|owns| B
-                B -->|employs| C
-                B -->|employs| D
-                C -->|initiated| E
-                D -->|authorized| E
-                E -->|processed at| G
-                E -->|occurred in| F
-
-            </div>
+          <svg
+            aria-roledescription="flowchart-v2"
+            role="graphics-document document"
+            viewBox="0 0 2823.25 296.3000183105469"
+            style="max-width: 2823.25px"
+            class="flowchart"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            id="mermaid-1747825285913"
+          >
+            <style>
+              #mermaid-1747825285913 {
+                font-family: "trebuchet ms", verdana, arial, sans-serif;
+                font-size: 3rem;
+                fill: #000000;
+              }
+              @keyframes edge-animation-frame {
+                from {
+                  stroke-dashoffset: 0;
+                }
+              }
+              @keyframes dash {
+                to {
+                  stroke-dashoffset: 0;
+                }
+              }
+              #mermaid-1747825285913 .edge-animation-slow {
+                stroke-dasharray: 9, 5 !important;
+                stroke-dashoffset: 900;
+                animation: dash 50s linear infinite;
+                stroke-linecap: round;
+              }
+              #mermaid-1747825285913 .edge-animation-fast {
+                stroke-dasharray: 9, 5 !important;
+                stroke-dashoffset: 900;
+                animation: dash 20s linear infinite;
+                stroke-linecap: round;
+              }
+              #mermaid-1747825285913 .error-icon {
+                fill: #552222;
+              }
+              #mermaid-1747825285913 .error-text {
+                fill: #552222;
+                stroke: #552222;
+              }
+              #mermaid-1747825285913 .edge-thickness-normal {
+                stroke-width: 1px;
+              }
+              #mermaid-1747825285913 .edge-thickness-thick {
+                stroke-width: 3.5px;
+              }
+              #mermaid-1747825285913 .edge-pattern-solid {
+                stroke-dasharray: 0;
+              }
+              #mermaid-1747825285913 .edge-thickness-invisible {
+                stroke-width: 0;
+                fill: none;
+              }
+              #mermaid-1747825285913 .edge-pattern-dashed {
+                stroke-dasharray: 3;
+              }
+              #mermaid-1747825285913 .edge-pattern-dotted {
+                stroke-dasharray: 2;
+              }
+              #mermaid-1747825285913 .marker {
+                fill: #666;
+                stroke: #666;
+              }
+              #mermaid-1747825285913 .marker.cross {
+                stroke: #666;
+              }
+              #mermaid-1747825285913 svg {
+                font-family: "trebuchet ms", verdana, arial, sans-serif;
+                font-size: 3rem;
+              }
+              #mermaid-1747825285913 p {
+                margin: 0;
+              }
+              #mermaid-1747825285913 .label {
+                font-family: "trebuchet ms", verdana, arial, sans-serif;
+                color: #000000;
+              }
+              #mermaid-1747825285913 .cluster-label text {
+                fill: #333;
+              }
+              #mermaid-1747825285913 .cluster-label span {
+                color: #333;
+              }
+              #mermaid-1747825285913 .cluster-label span p {
+                background-color: transparent;
+              }
+              #mermaid-1747825285913 .label text,
+              #mermaid-1747825285913 span {
+                fill: #000000;
+                color: #000000;
+              }
+              #mermaid-1747825285913 .node rect,
+              #mermaid-1747825285913 .node circle,
+              #mermaid-1747825285913 .node ellipse,
+              #mermaid-1747825285913 .node polygon,
+              #mermaid-1747825285913 .node path {
+                fill: #eee;
+                stroke: #999;
+                stroke-width: 1px;
+              }
+              #mermaid-1747825285913 .rough-node .label text,
+              #mermaid-1747825285913 .node .label text,
+              #mermaid-1747825285913 .image-shape .label,
+              #mermaid-1747825285913 .icon-shape .label {
+                text-anchor: middle;
+              }
+              #mermaid-1747825285913 .node .katex path {
+                fill: #000;
+                stroke: #000;
+                stroke-width: 1px;
+              }
+              #mermaid-1747825285913 .rough-node .label,
+              #mermaid-1747825285913 .node .label,
+              #mermaid-1747825285913 .image-shape .label,
+              #mermaid-1747825285913 .icon-shape .label {
+                text-align: center;
+              }
+              #mermaid-1747825285913 .node.clickable {
+                cursor: pointer;
+              }
+              #mermaid-1747825285913 .root .anchor path {
+                fill: #666 !important;
+                stroke-width: 0;
+                stroke: #666;
+              }
+              #mermaid-1747825285913 .arrowheadPath {
+                fill: #333333;
+              }
+              #mermaid-1747825285913 .edgePath .path {
+                stroke: #666;
+                stroke-width: 2px;
+              }
+              #mermaid-1747825285913 .flowchart-link {
+                stroke: #666;
+                fill: none;
+              }
+              #mermaid-1747825285913 .edgeLabel {
+                background-color: white;
+                text-align: center;
+              }
+              #mermaid-1747825285913 .edgeLabel p {
+                background-color: white;
+              }
+              #mermaid-1747825285913 .edgeLabel rect {
+                opacity: 0.5;
+                background-color: white;
+                fill: white;
+              }
+              #mermaid-1747825285913 .labelBkg {
+                background-color: rgba(255, 255, 255, 0.5);
+              }
+              #mermaid-1747825285913 .cluster rect {
+                fill: hsl(0, 0%, 98.9215686275%);
+                stroke: #707070;
+                stroke-width: 1px;
+              }
+              #mermaid-1747825285913 .cluster text {
+                fill: #333;
+              }
+              #mermaid-1747825285913 .cluster span {
+                color: #333;
+              }
+              #mermaid-1747825285913 div.mermaidTooltip {
+                position: absolute;
+                text-align: center;
+                max-width: 200px;
+                padding: 2px;
+                font-family: "trebuchet ms", verdana, arial, sans-serif;
+                font-size: 12px;
+                background: hsl(-160, 0%, 93.3333333333%);
+                border: 1px solid #707070;
+                border-radius: 2px;
+                pointer-events: none;
+                z-index: 100;
+              }
+              #mermaid-1747825285913 .flowchartTitleText {
+                text-anchor: middle;
+                font-size: 18px;
+                fill: #000000;
+              }
+              #mermaid-1747825285913 rect.text {
+                fill: none;
+                stroke-width: 0;
+              }
+              #mermaid-1747825285913 .icon-shape,
+              #mermaid-1747825285913 .image-shape {
+                background-color: white;
+                text-align: center;
+              }
+              #mermaid-1747825285913 .icon-shape p,
+              #mermaid-1747825285913 .image-shape p {
+                background-color: white;
+                padding: 2px;
+              }
+              #mermaid-1747825285913 .icon-shape rect,
+              #mermaid-1747825285913 .image-shape rect {
+                opacity: 0.5;
+                background-color: white;
+                fill: white;
+              }
+              #mermaid-1747825285913 :root {
+                --mermaid-font-family:
+                  "trebuchet ms", verdana, arial, sans-serif;
+              }
+            </style>
+            <g>
+              <marker
+                orient="auto"
+                markerHeight="8"
+                markerWidth="8"
+                markerUnits="userSpaceOnUse"
+                refY="5"
+                refX="5"
+                viewBox="0 0 10 10"
+                class="marker flowchart-v2"
+                id="mermaid-1747825285913_flowchart-v2-pointEnd"
+              >
+                <path
+                  style="stroke-width: 1px; stroke-dasharray: 1px, 0px"
+                  class="arrowMarkerPath"
+                  d="M 0 0 L 10 5 L 0 10 z"
+                ></path>
+              </marker>
+              <marker
+                orient="auto"
+                markerHeight="8"
+                markerWidth="8"
+                markerUnits="userSpaceOnUse"
+                refY="5"
+                refX="4.5"
+                viewBox="0 0 10 10"
+                class="marker flowchart-v2"
+                id="mermaid-1747825285913_flowchart-v2-pointStart"
+              >
+                <path
+                  style="stroke-width: 1px; stroke-dasharray: 1px, 0px"
+                  class="arrowMarkerPath"
+                  d="M 0 5 L 10 10 L 10 0 z"
+                ></path>
+              </marker>
+              <marker
+                orient="auto"
+                markerHeight="11"
+                markerWidth="11"
+                markerUnits="userSpaceOnUse"
+                refY="5"
+                refX="11"
+                viewBox="0 0 10 10"
+                class="marker flowchart-v2"
+                id="mermaid-1747825285913_flowchart-v2-circleEnd"
+              >
+                <circle
+                  style="stroke-width: 1px; stroke-dasharray: 1px, 0px"
+                  class="arrowMarkerPath"
+                  r="5"
+                  cy="5"
+                  cx="5"
+                ></circle>
+              </marker>
+              <marker
+                orient="auto"
+                markerHeight="11"
+                markerWidth="11"
+                markerUnits="userSpaceOnUse"
+                refY="5"
+                refX="-1"
+                viewBox="0 0 10 10"
+                class="marker flowchart-v2"
+                id="mermaid-1747825285913_flowchart-v2-circleStart"
+              >
+                <circle
+                  style="stroke-width: 1px; stroke-dasharray: 1px, 0px"
+                  class="arrowMarkerPath"
+                  r="5"
+                  cy="5"
+                  cx="5"
+                ></circle>
+              </marker>
+              <marker
+                orient="auto"
+                markerHeight="11"
+                markerWidth="11"
+                markerUnits="userSpaceOnUse"
+                refY="5.2"
+                refX="12"
+                viewBox="0 0 11 11"
+                class="marker cross flowchart-v2"
+                id="mermaid-1747825285913_flowchart-v2-crossEnd"
+              >
+                <path
+                  style="stroke-width: 2px; stroke-dasharray: 1px, 0px"
+                  class="arrowMarkerPath"
+                  d="M 1,1 l 9,9 M 10,1 l -9,9"
+                ></path>
+              </marker>
+              <marker
+                orient="auto"
+                markerHeight="11"
+                markerWidth="11"
+                markerUnits="userSpaceOnUse"
+                refY="5.2"
+                refX="-1"
+                viewBox="0 0 11 11"
+                class="marker cross flowchart-v2"
+                id="mermaid-1747825285913_flowchart-v2-crossStart"
+              >
+                <path
+                  style="stroke-width: 2px; stroke-dasharray: 1px, 0px"
+                  class="arrowMarkerPath"
+                  d="M 1,1 l 9,9 M 10,1 l -9,9"
+                ></path>
+              </marker>
+              <g class="root">
+                <g class="clusters"></g>
+                <g class="edgePaths">
+                  <path
+                    marker-end="url(#mermaid-1747825285913_flowchart-v2-pointEnd)"
+                    style=""
+                    class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+                    id="L_A_B_0"
+                    d="M340.917,148.15L357.826,148.15C374.736,148.15,408.556,148.15,441.708,148.15C474.861,148.15,507.347,148.15,523.59,148.15L539.833,148.15"
+                  ></path>
+                  <path
+                    marker-end="url(#mermaid-1747825285913_flowchart-v2-pointEnd)"
+                    style=""
+                    class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+                    id="L_B_C_0"
+                    d="M876.75,104.294L901.243,97.841C925.736,91.387,974.722,78.481,1023.042,72.028C1071.361,65.575,1119.014,65.575,1142.84,65.575L1166.667,65.575"
+                  ></path>
+                  <path
+                    marker-end="url(#mermaid-1747825285913_flowchart-v2-pointEnd)"
+                    style=""
+                    class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+                    id="L_B_D_0"
+                    d="M876.75,192.006L901.243,198.459C925.736,204.913,974.722,217.819,1023.042,224.272C1071.361,230.725,1119.014,230.725,1142.84,230.725L1166.667,230.725"
+                  ></path>
+                  <path
+                    marker-end="url(#mermaid-1747825285913_flowchart-v2-pointEnd)"
+                    style=""
+                    class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+                    id="L_C_E_0"
+                    d="M1503.583,65.575L1530.493,65.575C1557.403,65.575,1611.222,65.575,1664.395,72.189C1717.568,78.802,1770.095,92.029,1796.358,98.643L1822.621,105.256"
+                  ></path>
+                  <path
+                    marker-end="url(#mermaid-1747825285913_flowchart-v2-pointEnd)"
+                    style=""
+                    class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+                    id="L_D_E_0"
+                    d="M1503.583,230.725L1530.493,230.725C1557.403,230.725,1611.222,230.725,1664.395,224.111C1717.568,217.498,1770.095,204.271,1796.358,197.657L1822.621,191.044"
+                  ></path>
+                  <path
+                    marker-end="url(#mermaid-1747825285913_flowchart-v2-pointEnd)"
+                    style=""
+                    class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+                    id="L_E_G_0"
+                    d="M2159.417,106.233L2186.327,99.457C2213.236,92.68,2267.056,79.128,2324.747,72.351C2382.439,65.575,2444.003,65.575,2474.785,65.575L2505.567,65.575"
+                  ></path>
+                  <path
+                    marker-end="url(#mermaid-1747825285913_flowchart-v2-pointEnd)"
+                    style=""
+                    class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+                    id="L_E_F_0"
+                    d="M2159.417,190.067L2186.327,196.843C2213.236,203.62,2267.056,217.172,2320.208,223.949C2373.361,230.725,2425.847,230.725,2452.09,230.725L2478.333,230.725"
+                  ></path>
+                </g>
+                <g class="edgeLabels">
+                  <g
+                    transform="translate(442.3750228881836, 148.15000915527344)"
+                    class="edgeLabel"
+                  >
+                    <g
+                      transform="translate(-76.45833587646484, -42.57500457763672)"
+                      class="label"
+                    >
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="152.9166717529297"
+                        ><div
+                          class="labelBkg"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="edgeLabel"><p>owns</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(1023.708381652832, 65.57500457763672)"
+                    class="edgeLabel"
+                  >
+                    <g
+                      transform="translate(-121.95833587646484, -42.57500457763672)"
+                      class="label"
+                    >
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="243.9166717529297"
+                        ><div
+                          class="labelBkg"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="edgeLabel"><p>employs</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(1023.708381652832, 230.72501373291016)"
+                    class="edgeLabel"
+                  >
+                    <g
+                      transform="translate(-121.95833587646484, -42.57500457763672)"
+                      class="label"
+                    >
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="243.9166717529297"
+                        ><div
+                          class="labelBkg"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="edgeLabel"><p>employs</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(1665.041748046875, 65.57500457763672)"
+                    class="edgeLabel"
+                  >
+                    <g
+                      transform="translate(-112.89167022705078, -42.57500457763672)"
+                      class="label"
+                    >
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="225.78334045410156"
+                        ><div
+                          class="labelBkg"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="edgeLabel"><p>initiated</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(1665.041748046875, 230.72501373291016)"
+                    class="edgeLabel"
+                  >
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      class="label"
+                    >
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          class="labelBkg"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="edgeLabel"><p>authorized</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(2320.8751220703125, 65.57500457763672)"
+                    class="edgeLabel"
+                  >
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      class="label"
+                    >
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          class="labelBkg"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="edgeLabel"><p>processed at</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(2320.8751220703125, 230.72501373291016)"
+                    class="edgeLabel"
+                  >
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      class="label"
+                    >
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          class="labelBkg"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="edgeLabel"><p>occurred in</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                </g>
+                <g class="nodes">
+                  <g
+                    transform="translate(174.45834350585938, 148.15000915527344)"
+                    id="flowchart-A-0"
+                    class="node default"
+                  >
+                    <rect
+                      height="115.15000915527344"
+                      width="332.91668701171875"
+                      y="-57.57500457763672"
+                      x="-166.45834350585938"
+                      style="
+                        fill: #f9f !important;
+                        stroke: #333 !important;
+                        stroke-width: 2px !important;
+                      "
+                      class="basic label-container"
+                    ></rect>
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      style=""
+                      class="label"
+                    >
+                      <rect></rect>
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="nodeLabel"><p>Company A</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(710.2917022705078, 148.15000915527344)"
+                    id="flowchart-B-1"
+                    class="node default"
+                  >
+                    <rect
+                      height="115.15000915527344"
+                      width="332.91668701171875"
+                      y="-57.57500457763672"
+                      x="-166.45834350585938"
+                      style="
+                        fill: #bbf !important;
+                        stroke: #333 !important;
+                        stroke-width: 2px !important;
+                      "
+                      class="basic label-container"
+                    ></rect>
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      style=""
+                      class="label"
+                    >
+                      <rect></rect>
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="nodeLabel"><p>Company B</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(1337.1250610351562, 65.57500457763672)"
+                    id="flowchart-C-2"
+                    class="node default"
+                  >
+                    <rect
+                      height="115.15000915527344"
+                      width="332.91668701171875"
+                      y="-57.57500457763672"
+                      x="-166.45834350585938"
+                      style="
+                        fill: #bfb !important;
+                        stroke: #333 !important;
+                        stroke-width: 2px !important;
+                      "
+                      class="basic label-container"
+                    ></rect>
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      style=""
+                      class="label"
+                    >
+                      <rect></rect>
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="nodeLabel"><p>Person C</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(1337.1250610351562, 230.72501373291016)"
+                    id="flowchart-D-3"
+                    class="node default"
+                  >
+                    <rect
+                      height="115.15000915527344"
+                      width="332.91668701171875"
+                      y="-57.57500457763672"
+                      x="-166.45834350585938"
+                      style="
+                        fill: #fbf !important;
+                        stroke: #333 !important;
+                        stroke-width: 2px !important;
+                      "
+                      class="basic label-container"
+                    ></rect>
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      style=""
+                      class="label"
+                    >
+                      <rect></rect>
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="nodeLabel"><p>Person D</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(1992.9584350585938, 148.15000915527344)"
+                    id="flowchart-E-4"
+                    class="node default"
+                  >
+                    <rect
+                      height="115.15000915527344"
+                      width="332.91668701171875"
+                      y="-57.57500457763672"
+                      x="-166.45834350585938"
+                      style="
+                        fill: #ffb !important;
+                        stroke: #333 !important;
+                        stroke-width: 2px !important;
+                      "
+                      class="basic label-container"
+                    ></rect>
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      style=""
+                      class="label"
+                    >
+                      <rect></rect>
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="nodeLabel"><p>Transaction E</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(2648.7918090820312, 230.72501373291016)"
+                    id="flowchart-F-5"
+                    class="node default"
+                  >
+                    <rect
+                      height="115.15000915527344"
+                      width="332.91668701171875"
+                      y="-57.57500457763672"
+                      x="-166.45834350585938"
+                      style="
+                        fill: #fbb !important;
+                        stroke: #333 !important;
+                        stroke-width: 2px !important;
+                      "
+                      class="basic label-container"
+                    ></rect>
+                    <g
+                      transform="translate(-136.45834350585938, -42.57500457763672)"
+                      style=""
+                      class="label"
+                    >
+                      <rect></rect>
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="272.91668701171875"
+                        ><div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="nodeLabel"><p>Location F</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                  <g
+                    transform="translate(2648.7918090820312, 65.57500457763672)"
+                    id="flowchart-G-6"
+                    class="node default"
+                  >
+                    <rect
+                      height="115.15000915527344"
+                      width="278.4499969482422"
+                      y="-57.57500457763672"
+                      x="-139.2249984741211"
+                      style="
+                        fill: #bff !important;
+                        stroke: #333 !important;
+                        stroke-width: 2px !important;
+                      "
+                      class="basic label-container"
+                    ></rect>
+                    <g
+                      transform="translate(-109.2249984741211, -42.57500457763672)"
+                      style=""
+                      class="label"
+                    >
+                      <rect></rect>
+                      <foreignObject
+                        height="85.15000915527344"
+                        width="218.4499969482422"
+                        ><div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style="
+                            display: table-cell;
+                            white-space: nowrap;
+                            line-height: 1.5;
+                            max-width: 200px;
+                            text-align: center;
+                          "
+                        >
+                          <span class="nodeLabel"><p>Bank G</p></span>
+                        </div></foreignObject
+                      >
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
         </section>
 
         <section>
@@ -272,14 +1098,6 @@ embedding = model.encode(sentence)
           <p class="fragment">
             So let's imagine we just have <strong>2 dimensions</strong>
           </p>
-        </section>
-
-        <section>
-          <div id="embedding-first"></div>
-          <div class="fragment" id="embedding-second"></div>
-          <div class="fragment" id="embedding-lines"></div>
-          <div class="fragment" id="embedding-angle"></div>
-          <div class="fragment" id="embedding-similarity"></div>
         </section>
 
         <section>
@@ -491,16 +1309,16 @@ embedding = model.encode(sentence)
             <g class="fragment">
               <text
                 x="450"
-                y="580"
+                y="540"
                 style="font-size: 2rem"
                 text-anchor="middle"
                 fill="#d62728"
               >
-                Similarity = 0.7870
+                Similarity = 0.787
               </text>
               <text
                 x="450"
-                y="540"
+                y="500"
                 style="font-size: 1.8rem"
                 text-anchor="middle"
               >
@@ -513,17 +1331,9 @@ embedding = model.encode(sentence)
     </div>
 
     <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
       import "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.min.js";
       import "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js";
       import "https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js";
-
-      mermaid.initialize({
-        theme: "neutral",
-        themeVariables: {
-          fontSize: "3rem",
-        },
-      });
 
       async function initialize_graph() {
         const response = await fetch(
@@ -600,233 +1410,6 @@ embedding = model.encode(sentence)
           }
         });
       }
-
-      // SVG dimensions
-      const width = 600;
-      const height = 600;
-      const margin = 10;
-
-      // Data point
-      const points = [
-        { x: 0.15, y: 0.72 },
-        { x: 0.51, y: 0.43 },
-      ];
-
-      // Create SVG
-      const svg = d3
-        .select("#embedding-first")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
-      // Create scales
-      const xScale = d3
-        .scaleLinear()
-        .domain([-1, 1]) // x-axis range from -1 to 1
-        .range([margin, width - margin]);
-
-      const yScale = d3
-        .scaleLinear()
-        .domain([-1, 1]) // y-axis range from -1 to 1
-        .range([height - margin, margin]);
-
-      // Create axes
-      const xAxis = d3.axisBottom(xScale);
-      const yAxis = d3.axisLeft(yScale);
-
-      // Add X axis
-      svg
-        .append("g")
-        .attr("class", "axis")
-        .attr("transform", `translate(0, ${yScale(0)})`)
-        .call(xAxis);
-
-      // Add Y axis
-      svg
-        .append("g")
-        .attr("class", "axis")
-        .attr("transform", `translate(${xScale(0)}, 0)`)
-        .call(yAxis);
-
-      // Add the first point
-      svg
-        .append("circle")
-        .attr("class", "point")
-        .attr("cx", xScale(points[0].x))
-        .attr("cy", yScale(points[0].y))
-        .attr("r", 6)
-        .attr("fill", "#1f77b4");
-
-      // Add point coordinates label
-      svg
-        .append("text")
-        .attr("x", xScale(points[0].x) + 10)
-        .attr("y", yScale(points[0].y) - 10)
-        .text(`(${points[0].x}, ${points[0].y})`)
-        .style("font-size", "2rem");
-
-      Reveal.on("fragmentshown", function (event) {
-        const fragment = event.fragment;
-        if (
-          fragment.id === "embedding-second" &&
-          !fragment.dataset.initialized
-        ) {
-          // Add the second point
-          svg
-            .append("circle")
-            .attr("class", "point")
-            .attr("cx", xScale(points[1].x))
-            .attr("cy", yScale(points[1].y))
-            .attr("r", 6)
-            .attr("fill", "#ff7f0e");
-
-          // Add point coordinates label
-          svg
-            .append("text")
-            .attr("x", xScale(points[1].x) + 10)
-            .attr("y", yScale(points[1].y) - 10)
-            .text(`(${points[1].x}, ${points[1].y})`)
-            .style("font-size", "2rem");
-          fragment.dataset.initialized = "true";
-        }
-
-        // Add lines from origin to each point (vector visualization)
-        if (
-          fragment.id === "embedding-lines" &&
-          !fragment.dataset.initialized
-        ) {
-          // Line from origin to first point
-          svg
-            .append("line")
-            .attr("x1", xScale(0))
-            .attr("y1", yScale(0))
-            .attr("x2", xScale(points[0].x))
-            .attr("y2", yScale(points[0].y))
-            .attr("stroke", "#1f77b4")
-            .attr("stroke-width", 2);
-
-          // Line from origin to second point
-          svg
-            .append("line")
-            .attr("x1", xScale(0))
-            .attr("y1", yScale(0))
-            .attr("x2", xScale(points[1].x))
-            .attr("y2", yScale(points[1].y))
-            .attr("stroke", "#ff7f0e")
-            .attr("stroke-width", 2);
-
-          // Add vector labels
-          svg
-            .append("text")
-            .attr("x", xScale(points[0].x / 2) - 20)
-            .attr("y", yScale(points[0].y / 2) - 10)
-            .text("Vector A")
-            .style("font-size", "1.5rem")
-            .attr("fill", "#1f77b4");
-
-          svg
-            .append("text")
-            .attr("x", xScale(points[1].x / 2) + 10)
-            .attr("y", yScale(points[1].y / 2) - 10)
-            .text("Vector B")
-            .style("font-size", "1.5rem")
-            .attr("fill", "#ff7f0e");
-
-          fragment.dataset.initialized = "true";
-        }
-
-        // Add arc showing the angle between vectors
-        if (
-          fragment.id === "embedding-angle" &&
-          !fragment.dataset.initialized
-        ) {
-          // Calculate angle between vectors
-          const dotProduct =
-            points[0].x * points[1].x + points[0].y * points[1].y;
-          const magA = Math.sqrt(
-            points[0].x * points[0].x + points[0].y * points[0].y,
-          );
-          const magB = Math.sqrt(
-            points[1].x * points[1].x + points[1].y * points[1].y,
-          );
-          const cosTheta = dotProduct / (magA * magB);
-          const theta = Math.acos(cosTheta);
-
-          // Angle in degrees for display
-          const angleDegrees = ((theta * 180) / Math.PI).toFixed(1);
-
-          // Create arc path between vectors
-          const radius = 75;
-          const arcGenerator = d3
-            .arc()
-            .innerRadius(radius)
-            .outerRadius(radius + 5)
-            .startAngle(Math.atan2(points[0].x, points[0].y))
-            .endAngle(Math.atan2(points[1].x, points[1].y));
-
-          svg
-            .append("path")
-            .attr("d", arcGenerator)
-            .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`) // FIXED: Now positioned at the origin
-            .attr("fill", "#2ca02c");
-
-          // Add angle label
-          const midAngle =
-            (Math.atan2(points[0].y, points[0].x) +
-              Math.atan2(points[1].y, points[1].x)) /
-            2;
-          const labelRadius = radius + 20;
-
-          svg
-            .append("text")
-            .attr("x", xScale(0) + Math.cos(midAngle) * labelRadius + 20)
-            .attr("y", yScale(0) + Math.sin(midAngle) * labelRadius)
-            .text(`θ = ${angleDegrees}°`)
-            .style("font-size", "1.5rem")
-            .attr("fill", "#2ca02c")
-            .attr("text-anchor", "middle");
-
-          fragment.dataset.initialized = "true";
-        }
-
-        // Add cosine similarity explanation
-        if (
-          fragment.id === "embedding-similarity" &&
-          !fragment.dataset.initialized
-        ) {
-          // Calculate cosine similarity
-          const dotProduct =
-            points[0].x * points[1].x + points[0].y * points[1].y;
-          const magA = Math.sqrt(
-            points[0].x * points[0].x + points[0].y * points[0].y,
-          );
-          const magB = Math.sqrt(
-            points[1].x * points[1].x + points[1].y * points[1].y,
-          );
-          const cosineSimilarity = dotProduct / (magA * magB);
-
-          // Add similarity score at the right side
-          svg
-            .append("text")
-            .attr("x", width - 150)
-            .attr("y", height - 20)
-            .text(`Similarity = ${cosineSimilarity.toFixed(4)}`)
-            .style("font-size", "2rem")
-            .attr("text-anchor", "middle")
-            .attr("fill", "#d62728");
-
-          // Add formula explanation
-          svg
-            .append("text")
-            .attr("x", width - 150)
-            .attr("y", height - 60)
-            .text("cos(θ) = A·B / (|A|·|B|)")
-            .style("font-size", "1.8rem")
-            .attr("text-anchor", "middle");
-
-          fragment.dataset.initialized = "true";
-        }
-      });
 
       await initialize_graph();
 
