@@ -126,7 +126,7 @@
           <h2>But what is RAG?</h2>
           <p class="fragment">R(etrieval) A(ugmented) G(eneration)</p>
           <p class="fragment">
-            Help the language model with relevant information
+            <strong>Help the language model with relevant information</strong>
           </p>
         </section>
 
@@ -149,20 +149,42 @@
         </section>
 
         <section>
-          <h2>What is relevant?</h2>
-          <p>
-            How does the computer know what information is relevant to the
-            question?
+          <p>Sounds familiar?</p>
+        </section>
+
+        <section data-background-image="deepresearch.png"></section>
+
+        <section>
+          <h2>So, what is relevant?</h2>
+          <p>What information do you give to the model?</p>
+        </section>
+
+        <section>
+          <p>Deep Research searches the web</p>
+          <p class="fragment">
+            But GraphRAG makes use of <strong>"semantic search"</strong>
           </p>
         </section>
 
         <section>
           <p>
-            By converting texts into numerical representations that can be
-            compared, usually Vectors
+            Semantic search is a way of finding semantically similar information
           </p>
+          <p class="fragment">
+            It works by converting texts into numerical representations that can
+            be compared, usually Vectors
+          </p>
+        </section>
 
-          <p class="fragment">These are called <strong>embeddings</strong></p>
+        <section>
+          <p>Don't worry, it's simpler than it sounds</p>
+        </section>
+
+        <section>
+          <p>These vectors are called <strong>embeddings</strong></p>
+          <p class="fragment">
+            Because we're embedding text into multidimensional space
+          </p>
         </section>
 
         <section>
@@ -176,8 +198,9 @@
 
         <section>
           <p>
-            This conversion is done with "embedding models" that are trained
-            specifically for this task.
+            This conversion is done with
+            <strong>"embedding models"</strong> that are trained specifically
+            for this task.
           </p>
         </section>
 
@@ -229,8 +252,9 @@ embedding = model.encode(sentence)
 
         <section>
           <p>
-            Vectors with <strong>similar direction and magnitude</strong> are
-            semantically similar
+            Embedding models are trained so that vectors with
+            <strong>similar direction and magnitude</strong> are semantically
+            similar
           </p>
         </section>
 
@@ -256,6 +280,234 @@ embedding = model.encode(sentence)
           <div class="fragment" id="embedding-lines"></div>
           <div class="fragment" id="embedding-angle"></div>
           <div class="fragment" id="embedding-similarity"></div>
+        </section>
+
+        <section>
+          <svg width="600" height="600">
+            <g
+              class="axis"
+              transform="translate(0, 300)"
+              fill="none"
+              font-size="10"
+              font-family="sans-serif"
+              text-anchor="middle"
+            >
+              <path
+                class="domain"
+                stroke="currentColor"
+                d="M10.5,6V0.5H590.5V6"
+              ></path>
+              <g class="tick" opacity="1" transform="translate(10.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">−1.0</text>
+              </g>
+              <g
+                class="tick"
+                opacity="1"
+                transform="translate(68.49999999999999,0)"
+              >
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">−0.8</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(126.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">−0.6</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(184.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">−0.4</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(242.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">−0.2</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(300.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">0.0</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(358.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">0.2</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(416.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">0.4</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(474.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">0.6</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(532.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">0.8</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(590.5,0)">
+                <line stroke="currentColor" y2="6"></line>
+                <text fill="currentColor" y="9" dy="0.71em">1.0</text>
+              </g>
+            </g>
+            <g
+              class="axis"
+              transform="translate(300, 0)"
+              fill="none"
+              font-size="10"
+              font-family="sans-serif"
+              text-anchor="end"
+            >
+              <path
+                class="domain"
+                stroke="currentColor"
+                d="M-6,590.5H0.5V10.5H-6"
+              ></path>
+              <g class="tick" opacity="1" transform="translate(0,590.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">−1.0</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(0,532.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">−0.8</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(0,474.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">−0.6</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(0,416.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">−0.4</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(0,358.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">−0.2</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(0,300.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">0.0</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(0,242.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">0.2</text>
+              </g>
+              <g
+                class="tick"
+                opacity="1"
+                transform="translate(0,184.50000000000003)"
+              >
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">0.4</text>
+              </g>
+              <g
+                class="tick"
+                opacity="1"
+                transform="translate(0,126.49999999999997)"
+              >
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">0.6</text>
+              </g>
+              <g
+                class="tick"
+                opacity="1"
+                transform="translate(0,68.49999999999999)"
+              >
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">0.8</text>
+              </g>
+              <g class="tick" opacity="1" transform="translate(0,10.5)">
+                <line stroke="currentColor" x2="-6"></line>
+                <text fill="currentColor" x="-9" dy="0.32em">1.0</text>
+              </g>
+            </g>
+            <g class="fragment">
+              <circle
+                class="point"
+                cx="343.5"
+                cy="91.2"
+                r="6"
+                fill="#1f77b4"
+              ></circle>
+              <line
+                x1="300"
+                y1="300"
+                x2="343.5"
+                y2="91.2"
+                stroke="#1f77b4"
+                stroke-width="2"
+              ></line>
+              <text
+                x="301.75"
+                y="185.60000000000005"
+                style="font-size: 1.5rem"
+                fill="#1f77b4"
+              >
+                Vector A
+              </text>
+              <text x="353.5" y="81.2" style="font-size: 2rem">
+                (0.15, 0.72)
+              </text>
+            </g>
+            <g class="fragment">
+              <circle
+                class="point"
+                cx="447.9"
+                cy="175.3"
+                r="6"
+                fill="#ff7f0e"
+              ></circle>
+              <line
+                x1="300"
+                y1="300"
+                x2="447.9"
+                y2="175.3"
+                stroke="#ff7f0e"
+                stroke-width="2"
+              ></line>
+              <text
+                x="383.95"
+                y="227.64999999999998"
+                style="font-size: 1.5rem"
+                fill="#ff7f0e"
+              >
+                Vector B
+              </text>
+              <text x="457.9" y="165.3" style="font-size: 2rem">
+                (0.51, 0.43)
+              </text>
+            </g>
+            <g class="fragment">
+              <path
+                d="M16.316,-78.318A80,80,0,0,1,61.162,-51.568L57.339,-48.345A75,75,0,0,0,15.297,-73.424Z"
+                transform="translate(300, 300)"
+                fill="#2ca02c"
+              ></path>
+              <text
+                x="368.66742960377087"
+                y="381.5872618474355"
+                style="font-size: 1.5rem"
+                fill="#2ca02c"
+                text-anchor="middle"
+              >
+                θ = 38.1°
+              </text>
+            </g>
+            <g class="fragment">
+              <text
+                x="450"
+                y="580"
+                style="font-size: 2rem"
+                text-anchor="middle"
+                fill="#d62728"
+              >
+                Similarity = 0.7870
+              </text>
+              <text
+                x="450"
+                y="540"
+                style="font-size: 1.8rem"
+                text-anchor="middle"
+              >
+                cos(θ) = A·B / (|A|·|B|)
+              </text>
+            </g>
+          </svg>
         </section>
       </div>
     </div>
@@ -558,7 +810,7 @@ embedding = model.encode(sentence)
             .append("text")
             .attr("x", width - 150)
             .attr("y", height - 20)
-            .text(`Cosine Similarity = ${cosineSimilarity.toFixed(4)}`)
+            .text(`Similarity = ${cosineSimilarity.toFixed(4)}`)
             .style("font-size", "2rem")
             .attr("text-anchor", "middle")
             .attr("fill", "#d62728");
