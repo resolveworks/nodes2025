@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>My Presentation</title>
+    <title>Finding Connections</title>
 
     <link
       rel="stylesheet"
@@ -49,8 +49,8 @@
 
           <ul>
             <li>Freelance IT generalist</li>
-            <li>Over 15 years of building information systems</li>
-            <li>Worked in journalism for the last 4 years</li>
+            <li>Over 15 years of building software</li>
+            <li>Work in journalism for the last 4 years</li>
           </ul>
         </section>
 
@@ -1007,14 +1007,14 @@
         </section>
 
         <section>
-          <p>Don't worry, it's simpler than it sounds</p>
-        </section>
-
-        <section>
           <p>These vectors are called <strong>embeddings</strong></p>
           <p class="fragment">
             Because we're embedding text into multidimensional space
           </p>
+        </section>
+
+        <section>
+          <p>Don't worry, it's simpler than it sounds</p>
         </section>
 
         <section>
@@ -1358,6 +1358,59 @@ embedding = model.encode(sentence)
 
         <section>
           <p>Congratulations, you made it through the theory! 🎉</p>
+        </section>
+
+        <section>
+          <h2>GraphRAG</h2>
+          <p>How are these these technologies combined?</p>
+        </section>
+
+        <section>
+          <p>First the dataset is preprocessed...</p>
+        </section>
+        <section>
+          <p>Entities and relations are extracted from the text</p>
+          <p class="fragment">Embedded for semantic search</p>
+          <p class="fragment">Added to the graph</p>
+          <p class="fragment">After which communities are calculated</p>
+        </section>
+
+        <section>
+          <p>Then, when querying the data...</p>
+        </section>
+
+        <section>
+          <p>Find similar entities through semantic search</p>
+          <p class="fragment">Fetch related entities and communities</p>
+          <p class="fragment">And the texts that reference them</p>
+        </section>
+
+        <section>
+          <p>Send all that together with the question to the model</p>
+        </section>
+
+        <section>
+          <pre><code class="language-text">---Role---
+You are a helpful assistant responding to questions about data in the tables provided.
+
+---Goal---
+Generate a response that responds to the user's question, summarizing all information in the input data tables, and incorporating any relevant general knowledge.
+If you don't know the answer, just say so. Do not make anything up.
+Do not include information where the supporting evidence for it is not provided.
+
+---Data tables---
+{context_data}</code></pre>
+        </section>
+
+        <section>
+          <p>And get better answers</p>
+        </section>
+
+        <section>
+          <p>But why is this cool?</p>
+          <p class="fragment">
+            <strong>Because we can visualize the graph</strong>
+          </p>
         </section>
       </div>
     </div>
