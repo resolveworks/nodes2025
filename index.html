@@ -167,7 +167,7 @@
 
         <section>
           <p>
-            A vector is a <strong>coordinate in multidimensional space</strong>
+            A vector is a <strong>direction in multidimensional space</strong>
           </p>
           <p class="fragment">
             In other words, <strong>a list of numbers</strong>
@@ -228,13 +228,34 @@ embedding = model.encode(sentence)
         </section>
 
         <section>
-          <p>First of all, that's a lot of numbers...</p>
-          <p class="fragment">So let's imagine we just have 2 dimensions</p>
+          <p>
+            Vectors with <strong>similar direction and magnitude</strong> are
+            semantically similar
+          </p>
+        </section>
+
+        <section>
+          <p>
+            Usually this is calculated with <strong>Cosine Similarity</strong>
+          </p>
+        </section>
+
+        <section>
+          <p>Let's see what that looks like</p>
+          <p class="fragment">
+            <strong>384 dimensions</strong> is hard to visualize though...
+          </p>
+          <p class="fragment">
+            So let's imagine we just have <strong>2 dimensions</strong>
+          </p>
         </section>
 
         <section>
           <div id="embedding-first"></div>
           <div class="fragment" id="embedding-second"></div>
+          <div class="fragment" id="embedding-lines"></div>
+          <div class="fragment" id="embedding-angle"></div>
+          <div class="fragment" id="embedding-similarity"></div>
         </section>
       </div>
     </div>
@@ -335,8 +356,8 @@ embedding = model.encode(sentence)
 
       // Data point
       const points = [
-        { x: 0.3, y: 0.5 },
-        { x: 0.2, y: 0.4 },
+        { x: 0.15, y: 0.72 },
+        { x: 0.51, y: 0.43 },
       ];
 
       // Create SVG
@@ -375,13 +396,14 @@ embedding = model.encode(sentence)
         .attr("transform", `translate(${xScale(0)}, 0)`)
         .call(yAxis);
 
-      // Add the point
+      // Add the first point
       svg
         .append("circle")
         .attr("class", "point")
         .attr("cx", xScale(points[0].x))
         .attr("cy", yScale(points[0].y))
-        .attr("r", 6);
+        .attr("r", 6)
+        .attr("fill", "#1f77b4");
 
       // Add point coordinates label
       svg
@@ -397,13 +419,14 @@ embedding = model.encode(sentence)
           fragment.id === "embedding-second" &&
           !fragment.dataset.initialized
         ) {
-          // Add the point
+          // Add the second point
           svg
             .append("circle")
             .attr("class", "point")
             .attr("cx", xScale(points[1].x))
             .attr("cy", yScale(points[1].y))
-            .attr("r", 6);
+            .attr("r", 6)
+            .attr("fill", "#ff7f0e");
 
           // Add point coordinates label
           svg
@@ -412,6 +435,143 @@ embedding = model.encode(sentence)
             .attr("y", yScale(points[1].y) - 10)
             .text(`(${points[1].x}, ${points[1].y})`)
             .style("font-size", "2rem");
+          fragment.dataset.initialized = "true";
+        }
+
+        // Add lines from origin to each point (vector visualization)
+        if (
+          fragment.id === "embedding-lines" &&
+          !fragment.dataset.initialized
+        ) {
+          // Line from origin to first point
+          svg
+            .append("line")
+            .attr("x1", xScale(0))
+            .attr("y1", yScale(0))
+            .attr("x2", xScale(points[0].x))
+            .attr("y2", yScale(points[0].y))
+            .attr("stroke", "#1f77b4")
+            .attr("stroke-width", 2);
+
+          // Line from origin to second point
+          svg
+            .append("line")
+            .attr("x1", xScale(0))
+            .attr("y1", yScale(0))
+            .attr("x2", xScale(points[1].x))
+            .attr("y2", yScale(points[1].y))
+            .attr("stroke", "#ff7f0e")
+            .attr("stroke-width", 2);
+
+          // Add vector labels
+          svg
+            .append("text")
+            .attr("x", xScale(points[0].x / 2) - 20)
+            .attr("y", yScale(points[0].y / 2) - 10)
+            .text("Vector A")
+            .style("font-size", "1.5rem")
+            .attr("fill", "#1f77b4");
+
+          svg
+            .append("text")
+            .attr("x", xScale(points[1].x / 2) + 10)
+            .attr("y", yScale(points[1].y / 2) - 10)
+            .text("Vector B")
+            .style("font-size", "1.5rem")
+            .attr("fill", "#ff7f0e");
+
+          fragment.dataset.initialized = "true";
+        }
+
+        // Add arc showing the angle between vectors
+        if (
+          fragment.id === "embedding-angle" &&
+          !fragment.dataset.initialized
+        ) {
+          // Calculate angle between vectors
+          const dotProduct =
+            points[0].x * points[1].x + points[0].y * points[1].y;
+          const magA = Math.sqrt(
+            points[0].x * points[0].x + points[0].y * points[0].y,
+          );
+          const magB = Math.sqrt(
+            points[1].x * points[1].x + points[1].y * points[1].y,
+          );
+          const cosTheta = dotProduct / (magA * magB);
+          const theta = Math.acos(cosTheta);
+
+          // Angle in degrees for display
+          const angleDegrees = ((theta * 180) / Math.PI).toFixed(1);
+
+          // Create arc path between vectors
+          const radius = 75;
+          const arcGenerator = d3
+            .arc()
+            .innerRadius(radius)
+            .outerRadius(radius + 5)
+            .startAngle(Math.atan2(points[0].x, points[0].y))
+            .endAngle(Math.atan2(points[1].x, points[1].y));
+
+          svg
+            .append("path")
+            .attr("d", arcGenerator)
+            .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`) // FIXED: Now positioned at the origin
+            .attr("fill", "#2ca02c");
+
+          // Add angle label
+          const midAngle =
+            (Math.atan2(points[0].y, points[0].x) +
+              Math.atan2(points[1].y, points[1].x)) /
+            2;
+          const labelRadius = radius + 20;
+
+          svg
+            .append("text")
+            .attr("x", xScale(0) + Math.cos(midAngle) * labelRadius + 20)
+            .attr("y", yScale(0) + Math.sin(midAngle) * labelRadius)
+            .text(`θ = ${angleDegrees}°`)
+            .style("font-size", "1.5rem")
+            .attr("fill", "#2ca02c")
+            .attr("text-anchor", "middle");
+
+          fragment.dataset.initialized = "true";
+        }
+
+        // Add cosine similarity explanation
+        if (
+          fragment.id === "embedding-similarity" &&
+          !fragment.dataset.initialized
+        ) {
+          // Calculate cosine similarity
+          const dotProduct =
+            points[0].x * points[1].x + points[0].y * points[1].y;
+          const magA = Math.sqrt(
+            points[0].x * points[0].x + points[0].y * points[0].y,
+          );
+          const magB = Math.sqrt(
+            points[1].x * points[1].x + points[1].y * points[1].y,
+          );
+          const cosineSimilarity = dotProduct / (magA * magB);
+
+          // Add similarity score at the right side
+          svg
+            .append("text")
+            .attr("x", width - 150)
+            .attr("y", height - 20)
+            .text(`Cosine Similarity = ${cosineSimilarity.toFixed(4)}`)
+            .style("font-size", "2rem")
+            .attr("text-anchor", "middle")
+            .attr("fill", "#d62728");
+
+          // Add formula explanation
+          svg
+            .append("text")
+            .attr("x", width - 150)
+            .attr("y", height - 60)
+            .text("cos(θ) = A·B / (|A|·|B|)")
+            .style("font-size", "1.8rem")
+            .attr("text-anchor", "middle");
+
           fragment.dataset.initialized = "true";
         }
       });
