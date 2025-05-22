@@ -37,11 +37,55 @@
       table td:nth-child(2) {
         text-align: right;
       }
+
+      .button {
+        all: unset;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(143 227 232 / 1);
+        padding: 0.5rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        font-size: 2rem;
+      }
     </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
+        <section>
+          <h1>Welcome</h1>
+
+          <p>To get started:</p>
+          <ol>
+            <li>
+              Create an account:
+              <a href="https://console.neo4j.io/">console.neo4j.io</a>
+            </li>
+            <li>
+              Create a free instance:
+              <button type="button" class="button">Create instance</button>
+            </li>
+            <li>
+              Visit
+              <a href="https://llm-graph-builder.neo4jlabs.com"
+                >llm-graph-builder.neo4jlabs.com</a
+              >
+            </li>
+            <li>
+              Connect to your instance:
+              <button type="button" class="button">Connect to Neo4j</button>
+            </li>
+          </ol>
+
+          <p>
+            Slides:
+            <a href="http://dh25.resolve.works">dh25.resolve.works</a>
+          </p>
+        </section>
+
         <section>
           <h1>Finding Connections</h1>
           <p>Transform your document collection into a graph visualisation</p>
