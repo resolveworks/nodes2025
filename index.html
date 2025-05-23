@@ -34,7 +34,7 @@
         box-shadow: none;
       }
 
-      table td:nth-child(2) {
+      table.align-right td:nth-child(2) {
         text-align: right;
       }
 
@@ -49,6 +49,11 @@
         border-radius: 0.5rem;
         font-weight: bold;
         font-size: 2rem;
+      }
+
+      .qr {
+        width: 300px;
+        aspect-ratio: 1;
       }
     </style>
   </head>
@@ -1389,7 +1394,7 @@ embedding = model.encode(sentence)
         <section><p>So to come back to "The sun is shining"...</p></section>
 
         <section>
-          <table>
+          <table class="align-right">
             <tr>
               <th>Text</th>
               <th>Similarity</th>
@@ -3349,6 +3354,116 @@ Do not include information where the supporting evidence for it is not provided.
         </section>
 
         <section data-background-image="graph.png"></section>
+
+        <section>
+          <h2>GraphRAG tools</h2>
+          <ol>
+            <li>
+              <a href="https://github.com/microsoft/graphrag"
+                >github.com/microsoft/graphrag</a
+              >
+              <br />
+              <a href="https://github.com/noworneverev/graphrag-visualizer"
+                >github.com/noworneverev/graphrag-visualizer</a
+              >
+              <small>Widely adopted, popular</small>
+            </li>
+            <li>
+              <a href="https://github.com/gusye1234/nano-graphrag"
+                >github.com/gusye1234/nano-graphrag</a
+              >
+              <br />
+              <small>Small, easy to hack on</small>
+            </li>
+            <li>
+              <a href="llm-graph-builder.neo4jlabs.com"
+                >llm-graph-builder.neo4jlabs.com</a
+              >
+              <br />
+              <a href="https://github.com/neo4j/neo4j-graphrag-python"
+                >github.com/neo4j/neo4j-graphrag-python</a
+              >
+              <small>Neo4j ecosystem</small>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Parsing documents</h2>
+          <p>Language model ❤️ markdown</p>
+          <ol>
+            <li>
+              <a href="https://github.com/docling-project/docling"
+                >github.com/docling-project/docling</a
+              >
+              <br />
+              <small>IBM Research</small>
+            </li>
+            <li>
+              <a href="https://github.com/microsoft/markitdown"
+                >github.com/microsoft/markitdown</a
+              >
+              <br />
+              <small>Microsoft</small>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <p>To get started:</p>
+          <ol>
+            <li>
+              Visit:
+              <a href="https://console.neo4j.io/">console.neo4j.io</a> and
+              create an account
+            </li>
+            <li>
+              Create a free instance:
+              <button type="button" class="button">Create instance</button>
+            </li>
+            <li>
+              Visit
+              <a href="https://llm-graph-builder.neo4jlabs.com"
+                >llm-graph-builder.neo4jlabs.com</a
+              >
+            </li>
+            <li>
+              Connect to your instance:
+              <button type="button" class="button">Connect to Neo4j</button>
+
+              <small
+                >(Use the credentials file downloaded on instance
+                creation)</small
+              >
+            </li>
+          </ol>
+
+          <p>
+            <a
+              href="https://drive.google.com/drive/folders/1TPE9HBxGjCKiDVwTxxS1-1sPRMIlqafR?usp=drive_link"
+              >Example documents</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <table>
+            <tr>
+              <td>
+                LinkedIn:<br />
+                <img
+                  class="qr"
+                  src="linkedin_qr.svg"
+                  style="margin-right: 16rem"
+                />
+              </td>
+
+              <td>Slides:<br /><img class="qr" src="slides_qr.svg" /></td>
+            </tr>
+          </table>
+
+          <p style="text-align: center">Thank you!</p>
+        </section>
       </div>
     </div>
 
