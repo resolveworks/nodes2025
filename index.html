@@ -22,6 +22,21 @@
       href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --r-heading-font: "Inter", sans-serif;
+        --r-main-font: "Source Sans 3", sans-serif;
+        --r-heading-text-transform: none;
+      }
+    </style>
+
     <style>
       .reveal .slides section {
         text-align: left;
@@ -93,31 +108,30 @@
 
           <p>
             Slides:
-            <a href="http://dh25.resolve.works">dh25.resolve.works</a>
+            <a href="http://nodes25.resolve.works">nodes25.resolve.works</a>
           </p>
         </section>
 
         <section>
           <h1>Finding Connections</h1>
-          <p>Transform your document collection into a graph visualisation</p>
         </section>
 
         <section>
           <h2>Who am I?</h2>
 
           <ul>
-            <li>Freelance IT generalist</li>
+            <li>Freelance AI/Data engineer</li>
             <li>Over 15 years of building software</li>
-            <li>Work in journalism for the last 4 years</li>
+            <li>Focused on ethical tech</li>
           </ul>
         </section>
 
         <section>
           <h2>What we'll cover today</h2>
           <ul>
-            <li>What GraphRAG is, and how it works</li>
-            <li>How to get your documents ready</li>
-            <li>Extracting a graph from your documents</li>
+            <li>How GraphRAG works</li>
+            <li>Similarity search</li>
+            <li>Structured data extraction</li>
           </ul>
         </section>
 
@@ -361,8 +375,8 @@
                 fill: white;
               }
               #mermaid-1747825285913 :root {
-                --mermaid-font-family:
-                  "trebuchet ms", verdana, arial, sans-serif;
+                --mermaid-font-family: "trebuchet ms", verdana, arial,
+                  sans-serif;
               }
             </style>
             <g>
@@ -1014,7 +1028,7 @@
           <h2>But what is RAG?</h2>
           <p class="fragment">R(etrieval) A(ugmented) G(eneration)</p>
           <p class="fragment">
-            <strong>Help the language model with relevant information</strong>
+            <strong>Putting relevant information into context</strong>
           </p>
         </section>
 
@@ -1048,17 +1062,31 @@
         </section>
 
         <section>
+          <p>There's many ways</p>
+        </section>
+
+        <section>
           <p>Deep Research searches the web</p>
+          <p class="fragment">Familiar keyword search</p>
+        </section>
+
+        <section>
+          <p>But RAG systems</p>
           <p class="fragment">
-            But GraphRAG makes use of <strong>"semantic search"</strong>
+            Often make use of <strong>"semantic search"</strong>
           </p>
         </section>
 
         <section>
-          <p>
+          <h2>So what's semantic search?</h2>
+          <p class="fragment">
             Semantic search is a way of finding semantically similar information
           </p>
-          <p class="fragment">
+          <p class="fragment">Obviously...</p>
+        </section>
+
+        <section>
+          <p>
             It works by converting texts into numerical representations that can
             be compared, usually Vectors
           </p>
@@ -3451,25 +3479,6 @@ Do not include information where the supporting evidence for it is not provided.
               >, Thanks Lise!
             </small>
           </p>
-        </section>
-
-        <section>
-          <table>
-            <tr>
-              <td>
-                LinkedIn:<br />
-                <img
-                  class="qr"
-                  src="linkedin_qr.svg"
-                  style="margin-right: 16rem"
-                />
-              </td>
-
-              <td>Slides:<br /><img class="qr" src="slides_qr.svg" /></td>
-            </tr>
-          </table>
-
-          <p style="text-align: center">Thank you!</p>
         </section>
       </div>
     </div>
