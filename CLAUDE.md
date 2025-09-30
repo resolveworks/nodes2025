@@ -1,18 +1,35 @@
-# CLAUDE.md
+# Workshop Context
 
-`index.html` is a Reveal.js presentation on the GraphRAG ecosystem for the DataHarvest 2025 conference.
+This is a workshop about GraphRAG and the Neo4j Labs LLM Graph Builder. However, the real goal is to teach the underlying concepts and technologies that make this work, so attendees can apply these "tricks" in their own projects.
 
-## Session Description
+## Key Teaching Goals
 
-A high level overview of the GraphRAG ecosystem. We aim to show:
-- What GraphRAG is, and how it works
-- How to prepare your documents
-- How to build your own graph.
-- How to interface with your graph using Python
+- Show how to convert unstructured documents into structured graphs
+- Explain the fundamentals behind GraphRAG technology
+- Demonstrate the individual building blocks that can be used independently
+- Focus on transferable skills and concepts, not just the specific tool
 
-These techniques can be used to gain a visual overview of the contents of document sets, and to find information in the documents without having to rely on keywords. Put simply, it enables you to make sense of large amounts of documents without having to read them all.
+## Important Underlying Technologies to Highlight
 
-In the session you'll be making a graph from arbitrary documents, visualizing it, and using it to answer questions.
+- Structured data extraction from unstructured text
+- Entity recognition and relationship extraction
+- Schema extraction from text
+- Semantic/similarity search
+- Vector embeddings
+- Knowledge graph construction
+- Graph querying techniques
 
-It will help if you've heard of RAG before, but this is not a prerequisite. To follow along, all you need is a browser and an e-mail address. 
+## Workshop Flow
 
+- Learning about the LLM graph builder
+- Extracting schema's
+- Building knowledge graphs from real text
+- Visualizing document structures
+- Interactive exploration of the resulting graphs
+- Interfacing with python
+
+## Core Message
+
+While we're using GraphRAG as the vehicle for learning, the real value is understanding the component technologies. Each piece (extraction, embeddings, graph structures, semantic search) is valuable on its own and can be applied to many different problems beyond just document search.
+
+The attendees should leave understanding not just what GraphRAG is, but WHY it works and HOW each component contributes, so they can remix these concepts for their own use cases.
