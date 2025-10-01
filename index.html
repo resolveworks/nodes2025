@@ -118,9 +118,15 @@
 
         <section>
           <h2>Who am I?</h2>
+        </section>
+
+        <section>
+          <h2>I'm Johan</h2>
 
           <ul>
-            <li>Freelance AI/Data engineer</li>
+            <li>
+              <a href="https://resolve.works">Freelance AI/Data engineer</a>
+            </li>
             <li>Over 15 years of building software</li>
             <li>Focused on ethical tech</li>
           </ul>
@@ -136,18 +142,16 @@
         </section>
 
         <section>
-          <h3>Goal 1: Discovery</h3>
-          <p class="fragment">Try things and play around. Happy accidents</p>
+          <p>The "tricks" that together make up GraphRAG</p>
         </section>
 
         <section>
-          <h3>Goal 2: Understanding</h3>
-          <p class="fragment">Underlying concepts & technologies</p>
+          <h3>Goal: Fostering understanding</h3>
+          <p class="fragment">Of the underlying concepts & technologies</p>
         </section>
 
         <section>
-          <h3>Goal 3: Having fun</h3>
-          <p class="fragment">2 hours of playtime, let's get started</p>
+          <p>So you can apply these "tricks" in your work</p>
         </section>
 
         <section>
@@ -1081,61 +1085,86 @@
         </section>
 
         <section>
-          <p>Deep Research searches the web</p>
-          <p class="fragment">Familiar keyword search</p>
+          <p>Deep Research probably uses keyword search</p>
         </section>
 
         <section>
-          <p>But RAG systems</p>
-          <p class="fragment">
-            Often make use of <strong>"semantic search"</strong>
-          </p>
+          <p>But RAG systems often use <strong>"semantic search"</strong></p>
+        </section>
+
+        <section>
+          <p>Why?</p>
+        </section>
+
+        <section>
+          <p>Because it handles paraphrasing and synonyms</p>
+          <p class="fragment">And understands context and intent</p>
         </section>
 
         <section>
           <h2>So what's semantic search?</h2>
-          <p class="fragment">
-            Semantic search is a way of finding semantically similar information
-          </p>
         </section>
 
         <section>
           <p>
-            It works by converting texts into numerical representations that can
-            be compared, usually Vectors
+            It works by converting text into numerical representations
+            (<strong>vectors</strong>) that can be compared
           </p>
         </section>
 
         <section>
           <p>These vectors are called <strong>embeddings</strong></p>
-          <p class="fragment">Because we're embedding information</p>
-          <p class="fragment">Into multidimensional space</p>
-        </section>
-
-        <section>
-          <p>Don't worry, it's simpler than it sounds</p>
-        </section>
-
-        <section>
-          <p>
-            A vector is a <strong>direction in multidimensional space</strong>
-          </p>
+          <p class="fragment">Because we're "embedding" language</p>
+          <p class="fragment">Into numerical space</p>
           <p class="fragment">
-            In other words, <strong>a list of numbers</strong>
+            While trying to preserve semantic relationships
+          </p>
+        </section>
+
+        <section>
+          <h2>Okay... Embeddings</h2>
+          <p class="fragment">How do we create them?</p>
+          <p class="fragment">How do we compare them?</p>
+        </section>
+
+        <section>
+          <p>
+            To create them we use specialized<br />
+            <strong>"embedding models"</strong>
+          </p>
+        </section>
+
+        <section>
+          <p>These are trained for this task specifically</p>
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape class="language-python">
+Anchor: "The cat sat on the mat" 
+Positive: "A feline rested on the rug" → Pull closer 
+Negative: "Stocks rose 3% today"       → Push apart
+          </code></pre>
+          <p>Maximize similarity for positive pairs, minimize for negative</p>
+        </section>
+
+        <section>
+          <p>
+            <strong>Positive pairs:</strong> paraphrases, similar sentences,
+            consecutive sentences
+          </p>
+          <p><strong>Negative pairs:</strong> random unrelated sentences</p>
+        </section>
+
+        <section>
+          <p><strong>There's way more to it</strong></p>
+          <p class="fragment">
+            But we're not here to train our own embedding model
           </p>
         </section>
 
         <section>
           <p>
-            This conversion is done with
-            <strong>"embedding models"</strong> that are trained specifically
-            for this task.
-          </p>
-        </section>
-
-        <section>
-          <p>
-            Let's try with
+            Let's see what this looks like using
             <a
               href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
               >all-MiniLM-L6-v2</a
@@ -1174,23 +1203,42 @@ embedding = model.encode(sentence)
 
         <section>
           <p>
-            Great. But now that we have our numerical representation,
+            Great. Now that we have our numerical representation,
             <strong>how do we compare it to others?</strong>
           </p>
         </section>
 
         <section>
           <p>
-            Embedding models are trained so that vectors with
-            <strong>similar direction and magnitude</strong> are semantically
-            similar
+            A vector can be thought of as a list of numbers, or a coordinate or
+            <strong>direction in a space</strong>
           </p>
         </section>
 
         <section>
           <p>
-            We can find similar vectors by calculating
-            <strong>Cosine Similarity</strong>
+            Embedding models are trained so that vectors with
+            <strong>similar direction</strong> are semantically similar
+          </p>
+        </section>
+
+        <section>
+          <p>
+            Why angles between directions and not distance between coordinates?
+          </p>
+        </section>
+
+        <section>
+          <p><strong>High-Dimensional Geometry is Weird</strong></p>
+          <p class="fragment">
+            All points become roughly equidistant with Euclidean distance
+          </p>
+        </section>
+
+        <section>
+          <p>
+            So most of the times, we compare vectors by their angles. By
+            calculating <strong>Cosine Similarity</strong>
           </p>
         </section>
 
@@ -1200,7 +1248,7 @@ embedding = model.encode(sentence)
             <strong>384 dimensions</strong> is hard to visualize though...
           </p>
           <p class="fragment">
-            So let's imagine we just have <strong>2 dimensions</strong>
+            So let's imagine this in <strong>2 dimensions</strong>
           </p>
         </section>
 
@@ -1432,7 +1480,9 @@ embedding = model.encode(sentence)
           </svg>
         </section>
 
-        <section><p>So to come back to "The sun is shining"...</p></section>
+        <section>
+          <p>So to come back to <strong>"The sun is shining"</strong>...</p>
+        </section>
 
         <section>
           <table class="align-right">
@@ -1456,7 +1506,13 @@ embedding = model.encode(sentence)
         </section>
 
         <section>
-          <p>Congratulations, you made it through the theory! 🎉</p>
+          <p>Great, we can find similar things!</p>
+          <p class="fragment">Wait, what things?</p>
+        </section>
+
+        <section>
+          <h2>Structured data extraction</h2>
+          <p>Text to graph</p>
         </section>
 
         <section>
