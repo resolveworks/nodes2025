@@ -1584,7 +1584,7 @@ CalendarEvent(
         <section>
           <p>With a schema, we <strong>constrain this set of tokens</strong></p>
           <p>Only valid tokens that match the schema</p>
-          <p><strong>{"name": "Alice", "age": 30</strong></p>
+          <p><strong>{"chart": "tokens", "color": "blue"</strong></p>
           <svg id="constrained-token-chart" width="800" height="300"></svg>
         </section>
 
@@ -3811,12 +3811,12 @@ is not provided.
         .attr("transform", `translate(0, ${tokenChartHeight})`)
         .call(d3.axisBottom(tokenXScale));
 
-      tokenXAxis.selectAll("text").attr("font-size", "16px");
+      tokenXAxis.selectAll("text").attr("font-size", "32px");
 
       tokenXAxis
         .append("text")
         .attr("x", tokenChartWidth / 2)
-        .attr("y", 40)
+        .attr("y", 60)
         .attr("fill", "currentColor")
         .attr("text-anchor", "middle")
         .attr("font-size", "18px")
@@ -3850,8 +3850,9 @@ is not provided.
 
       // Only valid tokens for closing or continuing the JSON object
       const constrainedTokenData = [
-        { token: "}", prob: 0.6 },
-        { token: ",", prob: 0.4 },
+        { token: "}", prob: 0.5 },
+        { token: ",", prob: 0.35 },
+        { token: "␣", prob: 0.15 },
       ];
 
       // Create scales for constrained chart
@@ -3886,12 +3887,12 @@ is not provided.
         .attr("transform", `translate(0, ${tokenChartHeight})`)
         .call(d3.axisBottom(constrainedXScale));
 
-      constrainedXAxis.selectAll("text").attr("font-size", "16px");
+      constrainedXAxis.selectAll("text").attr("font-size", "32px");
 
       constrainedXAxis
         .append("text")
         .attr("x", tokenChartWidth / 2)
-        .attr("y", 40)
+        .attr("y", 60)
         .attr("fill", "currentColor")
         .attr("text-anchor", "middle")
         .attr("font-size", "18px")
