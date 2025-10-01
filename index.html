@@ -136,29 +136,26 @@
           <h2>What we'll cover today</h2>
           <ul>
             <li>How GraphRAG works</li>
-            <li>Semantic search</li>
-            <li>Structured data extraction</li>
+            <li>What is it made of?</li>
           </ul>
         </section>
 
         <section>
-          <p>The "tricks" that together make up GraphRAG</p>
+          <p>
+            Let's understand the
+            <strong>underlying concepts & technologies</strong>
+          </p>
         </section>
 
         <section>
-          <h3>Goal: Fostering understanding</h3>
-          <p class="fragment">Of the underlying concepts & technologies</p>
-        </section>
-
-        <section>
-          <p>So you can apply these "tricks" in your work</p>
+          <p>So you can use these tools in your own work</p>
         </section>
 
         <section>
           <h2>So, what is GraphRAG?</h2>
           <p class="fragment">
-            A way of getting better answers from a language model by using a
-            knowledge graph
+            A way of getting better answers from a language model by feeding it
+            information from a knowledge graph
           </p>
         </section>
 
@@ -1082,27 +1079,18 @@
 
         <section>
           <p>There's many ways</p>
-        </section>
-
-        <section>
-          <p>Deep Research probably uses keyword search</p>
+          <p class="fragment">Deep Research probably uses keyword search</p>
         </section>
 
         <section>
           <p>But RAG systems often use <strong>"semantic search"</strong></p>
-        </section>
-
-        <section>
-          <p>Why?</p>
-        </section>
-
-        <section>
-          <p>Because it handles paraphrasing and synonyms</p>
+          <p class="fragment">Because it handles paraphrasing and synonyms</p>
           <p class="fragment">And understands context and intent</p>
         </section>
 
         <section>
-          <h2>So what's semantic search?</h2>
+          <h2>Semantic search</h2>
+          <p>Also called similarity search</p>
         </section>
 
         <section>
@@ -1129,13 +1117,15 @@
 
         <section>
           <p>
-            To create them we use specialized<br />
+            To create these vectors we use specialized<br />
             <strong>"embedding models"</strong>
           </p>
         </section>
 
         <section>
-          <p>These are trained for this task specifically</p>
+          <p>
+            These models are <strong>trained for this task</strong> specifically
+          </p>
         </section>
 
         <section>
@@ -1223,13 +1213,11 @@ embedding = model.encode(sentence)
         </section>
 
         <section>
-          <p>
-            Why angles between directions and not distance between coordinates?
-          </p>
+          <p>Why compare directions and not distance between coordinates?</p>
         </section>
 
         <section>
-          <p><strong>High-Dimensional Geometry is Weird</strong></p>
+          <p><strong>Because high-dimensional geometry is weird</strong></p>
           <p class="fragment">
             All points become roughly equidistant with Euclidean distance
           </p>
