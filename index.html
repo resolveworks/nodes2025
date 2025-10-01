@@ -1098,6 +1098,9 @@
             It works by converting text into numerical representations
             (<strong>vectors</strong>) that can be compared
           </p>
+          <div style="margin-top: 40px">
+            <svg id="text-to-vector-chart" width="800" height="200"></svg>
+          </div>
         </section>
 
         <section>
@@ -3982,6 +3985,91 @@ is not provided.
         .attr("stroke", "#000")
         .attr("stroke-width", 2.5)
         .attr("stroke-dasharray", "5,3");
+
+      // Initialize text-to-vector chart
+      const textVectorSvg = d3.select("#text-to-vector-chart");
+      const textVectorWidth = 800;
+      const textVectorHeight = 200;
+      const textVectorG = textVectorSvg
+        .append("g")
+        .attr("transform", `translate(50, ${textVectorHeight / 2})`);
+
+      // Draw text on the left
+      textVectorG
+        .append("text")
+        .attr("x", -20)
+        .attr("y", 10)
+        .attr("text-anchor", "start")
+        .attr("font-size", "36px")
+        .attr("font-weight", "500")
+        .attr("fill", "currentColor")
+        .text('"semantic search"');
+
+      // Draw arrow in the middle
+      const arrowStartX = 280;
+      const arrowEndX = 380;
+      const arrowY = 0;
+
+      textVectorG
+        .append("line")
+        .attr("x1", arrowStartX)
+        .attr("y1", arrowY)
+        .attr("x2", arrowEndX)
+        .attr("y2", arrowY)
+        .attr("stroke", "#000")
+        .attr("stroke-width", 3);
+
+      // Arrow head
+      textVectorG
+        .append("polygon")
+        .attr(
+          "points",
+          `${arrowEndX},${arrowY} ${arrowEndX - 12},${arrowY - 8} ${arrowEndX - 12},${arrowY + 8}`,
+        )
+        .attr("fill", "#000");
+
+      // Draw vector array on the right
+      const vectorStartX = 410;
+      const vectorData = [0.42, -0.18, 0.91, -0.33, 0.67];
+      const boxWidth = 55;
+      const boxHeight = 50;
+
+      vectorData.forEach((value, i) => {
+        const x = vectorStartX + i * (boxWidth + 5);
+
+        // Draw box
+        textVectorG
+          .append("rect")
+          .attr("x", x)
+          .attr("y", -boxHeight / 2)
+          .attr("width", boxWidth)
+          .attr("height", boxHeight)
+          .attr("fill", "#4299e1")
+          .attr("stroke", "#000")
+          .attr("stroke-width", 2);
+
+        // Draw number
+        textVectorG
+          .append("text")
+          .attr("x", x + boxWidth / 2)
+          .attr("y", 5)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "16px")
+          .attr("font-weight", "500")
+          .attr("fill", "#fff")
+          .text(value.toFixed(2));
+      });
+
+      // Add ellipsis after vector
+      textVectorG
+        .append("text")
+        .attr("x", vectorStartX + vectorData.length * (boxWidth + 5) + 10)
+        .attr("y", 5)
+        .attr("text-anchor", "start")
+        .attr("font-size", "32px")
+        .attr("font-weight", "bold")
+        .attr("fill", "currentColor")
+        .text("...");
 
       // Initialize dimension-distance chart
       const dimDistSvg = d3.select("#dimension-distance-chart");
