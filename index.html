@@ -1577,11 +1577,15 @@ CalendarEvent(
         <section>
           <p>Transformers generate one token at a time</p>
           <p>A probability distribution over possible tokens</p>
+          <p><strong>"The quick brown fox jumps over ..."</strong></p>
+          <svg id="token-prob-chart" width="800" height="300"></svg>
         </section>
 
         <section>
           <p>With a schema, we <strong>constrain this set of tokens</strong></p>
           <p>Only valid tokens that match the schema</p>
+          <p><strong>{"name": "Alice", "age": 30</strong></p>
+          <svg id="constrained-token-chart" width="800" height="300"></svg>
         </section>
 
         <section>
@@ -3747,6 +3751,170 @@ is not provided.
       }
 
       await initialize_graph();
+
+      // Initialize token probability chart
+      const tokenProbSvg = d3.select("#token-prob-chart");
+      const tokenWidth = 800;
+      const tokenHeight = 300;
+      const tokenMargin = { top: 40, right: 40, bottom: 60, left: 60 };
+      const tokenChartWidth = tokenWidth - tokenMargin.left - tokenMargin.right;
+      const tokenChartHeight =
+        tokenHeight - tokenMargin.top - tokenMargin.bottom;
+
+      const tokenG = tokenProbSvg
+        .append("g")
+        .attr(
+          "transform",
+          `translate(${tokenMargin.left}, ${tokenMargin.top})`,
+        );
+
+      // Sample token data with probabilities for next token after "over"
+      const tokenData = [
+        { token: "the", prob: 0.35 },
+        { token: "a", prob: 0.22 },
+        { token: "to", prob: 0.15 },
+        { token: "and", prob: 0.12 },
+        { token: "it", prob: 0.08 },
+        { token: "there", prob: 0.05 },
+        { token: "...", prob: 0.03 },
+      ];
+
+      // Create scales
+      const tokenXScale = d3
+        .scaleBand()
+        .domain(tokenData.map((d) => d.token))
+        .range([0, tokenChartWidth])
+        .padding(0.2);
+
+      const tokenYScale = d3
+        .scaleLinear()
+        .domain([0, 0.5])
+        .range([tokenChartHeight, 0]);
+
+      // Add bars
+      tokenG
+        .selectAll("rect")
+        .data(tokenData)
+        .enter()
+        .append("rect")
+        .attr("x", (d) => tokenXScale(d.token))
+        .attr("y", (d) => tokenYScale(d.prob))
+        .attr("width", tokenXScale.bandwidth())
+        .attr("height", (d) => tokenChartHeight - tokenYScale(d.prob))
+        .attr("fill", "#4299e1")
+        .attr("stroke", "#000")
+        .attr("stroke-width", 1.5);
+
+      // Add x-axis
+      const tokenXAxis = tokenG
+        .append("g")
+        .attr("transform", `translate(0, ${tokenChartHeight})`)
+        .call(d3.axisBottom(tokenXScale));
+
+      tokenXAxis.selectAll("text").attr("font-size", "16px");
+
+      tokenXAxis
+        .append("text")
+        .attr("x", tokenChartWidth / 2)
+        .attr("y", 40)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .text("Tokens");
+
+      // Add y-axis
+      const tokenYAxis = tokenG
+        .append("g")
+        .call(d3.axisLeft(tokenYScale).ticks(5).tickFormat(d3.format(".0%")));
+
+      tokenYAxis.selectAll("text").attr("font-size", "16px");
+
+      tokenYAxis
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -tokenChartHeight / 2)
+        .attr("y", -45)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .text("Probability");
+
+      // Initialize constrained token chart (same structure as token chart)
+      const constrainedTokenSvg = d3.select("#constrained-token-chart");
+      const constrainedTokenG = constrainedTokenSvg
+        .append("g")
+        .attr(
+          "transform",
+          `translate(${tokenMargin.left}, ${tokenMargin.top})`,
+        );
+
+      // Only valid tokens for closing or continuing the JSON object
+      const constrainedTokenData = [
+        { token: "}", prob: 0.6 },
+        { token: ",", prob: 0.4 },
+      ];
+
+      // Create scales for constrained chart
+      const constrainedXScale = d3
+        .scaleBand()
+        .domain(constrainedTokenData.map((d) => d.token))
+        .range([0, tokenChartWidth])
+        .padding(0.2);
+
+      const constrainedYScale = d3
+        .scaleLinear()
+        .domain([0, 1.0])
+        .range([tokenChartHeight, 0]);
+
+      // Add bars
+      constrainedTokenG
+        .selectAll("rect")
+        .data(constrainedTokenData)
+        .enter()
+        .append("rect")
+        .attr("x", (d) => constrainedXScale(d.token))
+        .attr("y", (d) => constrainedYScale(d.prob))
+        .attr("width", constrainedXScale.bandwidth())
+        .attr("height", (d) => tokenChartHeight - constrainedYScale(d.prob))
+        .attr("fill", "#4299e1")
+        .attr("stroke", "#000")
+        .attr("stroke-width", 1.5);
+
+      // Add x-axis
+      const constrainedXAxis = constrainedTokenG
+        .append("g")
+        .attr("transform", `translate(0, ${tokenChartHeight})`)
+        .call(d3.axisBottom(constrainedXScale));
+
+      constrainedXAxis.selectAll("text").attr("font-size", "16px");
+
+      constrainedXAxis
+        .append("text")
+        .attr("x", tokenChartWidth / 2)
+        .attr("y", 40)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .text("Tokens");
+
+      // Add y-axis
+      const constrainedYAxis = constrainedTokenG
+        .append("g")
+        .call(
+          d3.axisLeft(constrainedYScale).ticks(5).tickFormat(d3.format(".0%")),
+        );
+
+      constrainedYAxis.selectAll("text").attr("font-size", "16px");
+
+      constrainedYAxis
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -tokenChartHeight / 2)
+        .attr("y", -45)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .text("Probability");
 
       // Initialize angle chart
       const angleSvg = d3.select("#angle-chart");
