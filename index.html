@@ -1214,6 +1214,10 @@ embedding = model.encode(sentence)
 
         <section>
           <p>Why compare directions and not distance between coordinates?</p>
+          <div style="display: flex; justify-content: space-around">
+            <svg id="angle-chart" width="300" height="300"></svg>
+            <svg id="distance-chart" width="300" height="300"></svg>
+          </div>
         </section>
 
         <section>
@@ -3739,6 +3743,94 @@ is not provided.
       }
 
       await initialize_graph();
+
+      // Initialize angle chart
+      const angleSvg = d3.select("#angle-chart");
+      const angleWidth = 300;
+      const angleHeight = 300;
+      const angleG = angleSvg
+        .append("g")
+        .attr("transform", `translate(40, ${angleHeight * 0.7})`);
+
+      // Draw vectors for angle - scale to use most of the canvas
+      const scale = angleWidth * 0.8;
+      angleG
+        .append("line")
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", scale)
+        .attr("y2", 0)
+        .attr("stroke", "#4299e1")
+        .attr("stroke-width", 4);
+
+      angleG
+        .append("line")
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", scale * Math.cos(Math.PI / 6))
+        .attr("y2", -scale * Math.sin(Math.PI / 6))
+        .attr("stroke", "#48bb78")
+        .attr("stroke-width", 4);
+
+      // Draw arc for angle (from horizontal blue to upper green vector)
+      const arcPath = d3
+        .arc()
+        .innerRadius(60)
+        .outerRadius(60)
+        .startAngle(Math.PI / 3)
+        .endAngle(Math.PI / 2);
+
+      angleG
+        .append("path")
+        .attr("d", arcPath)
+        .attr("fill", "none")
+        .attr("stroke", "#000")
+        .attr("stroke-width", 2.5);
+
+      // Add origin point
+      angleG
+        .append("circle")
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .attr("r", 6)
+        .attr("fill", "#000");
+
+      // Initialize distance chart
+      const distSvg = d3.select("#distance-chart");
+      const distWidth = 300;
+      const distHeight = 300;
+      const distG = distSvg
+        .append("g")
+        .attr("transform", `translate(${distWidth / 2}, ${distHeight / 2})`);
+
+      // Draw points for distance - scale to use most of the canvas
+      const p1 = { x: -distWidth * 0.35, y: distHeight * 0.15 };
+      const p2 = { x: distWidth * 0.35, y: -distHeight * 0.2 };
+
+      distG
+        .append("circle")
+        .attr("cx", p1.x)
+        .attr("cy", p1.y)
+        .attr("r", 10)
+        .attr("fill", "#4299e1");
+
+      distG
+        .append("circle")
+        .attr("cx", p2.x)
+        .attr("cy", p2.y)
+        .attr("r", 10)
+        .attr("fill", "#48bb78");
+
+      // Draw distance line
+      distG
+        .append("line")
+        .attr("x1", p1.x)
+        .attr("y1", p1.y)
+        .attr("x2", p2.x)
+        .attr("y2", p2.y)
+        .attr("stroke", "#000")
+        .attr("stroke-width", 2.5)
+        .attr("stroke-dasharray", "5,3");
 
       Reveal.initialize({
         history: true,
