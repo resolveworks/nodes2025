@@ -1503,7 +1503,9 @@ embedding = model.encode(sentence)
 
         <section>
           <p>Great, we can find similar things!</p>
-          <p class="fragment">Wait, what things?</p>
+          <p class="fragment">
+            But... <strong>how do we get the things?</strong>
+          </p>
         </section>
 
         <section>
@@ -1513,14 +1515,8 @@ embedding = model.encode(sentence)
 
         <section>
           <p>Transformers are great for chatting</p>
-        </section>
-
-        <section>
-          <p>
-            But they can also output
-            <a href="https://platform.openai.com/docs/guides/structured-outputs"
-              >structured data</a
-            >
+          <p class="fragment">
+            But they can also <strong>return structured data</strong>
           </p>
         </section>
 
@@ -1535,7 +1531,7 @@ class CalendarEvent(BaseModel):
         </section>
 
         <section>
-          <p>Alice and Bob are going to a science fair on Friday</p>
+          <p>We can pass it to our LLM</p>
           <pre><code data-trim data-noescape class="language-python">
 response = client.responses.parse(
   input=[
@@ -1551,7 +1547,7 @@ response = client.responses.parse(
         </section>
 
         <section>
-          <p>Gives us...</p>
+          <p>To get back structured data</p>
           <pre><code data-trim data-noescape class="language-python">
 CalendarEvent(
   name='Science Fair',
@@ -3813,15 +3809,6 @@ is not provided.
 
       tokenXAxis.selectAll("text").attr("font-size", "32px");
 
-      tokenXAxis
-        .append("text")
-        .attr("x", tokenChartWidth / 2)
-        .attr("y", 60)
-        .attr("fill", "currentColor")
-        .attr("text-anchor", "middle")
-        .attr("font-size", "18px")
-        .text("Tokens");
-
       // Add y-axis
       const tokenYAxis = tokenG
         .append("g")
@@ -3888,15 +3875,6 @@ is not provided.
         .call(d3.axisBottom(constrainedXScale));
 
       constrainedXAxis.selectAll("text").attr("font-size", "32px");
-
-      constrainedXAxis
-        .append("text")
-        .attr("x", tokenChartWidth / 2)
-        .attr("y", 60)
-        .attr("fill", "currentColor")
-        .attr("text-anchor", "middle")
-        .attr("font-size", "18px")
-        .text("Tokens");
 
       // Add y-axis
       const constrainedYAxis = constrainedTokenG
