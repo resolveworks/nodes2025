@@ -1156,7 +1156,7 @@ Negative: "Stocks rose 3% today"       → Push apart
         </section>
 
         <section>
-          <p><strong>There's way more to it</strong></p>
+          <p><strong>There's more to it</strong></p>
           <p class="fragment">
             But we're not here to train our own embedding model
           </p>
@@ -1512,22 +1512,111 @@ embedding = model.encode(sentence)
 
         <section>
           <h2>Structured data extraction</h2>
-          <p>Text to graph</p>
+          <p>From unstructured text to structured graph</p>
         </section>
 
         <section>
-          <h2>GraphRAG</h2>
-          <p>How are these these technologies combined?</p>
+          <p>Transformers are great for chatting</p>
+        </section>
+
+        <section>
+          <p>
+            But they can also output
+            <a href="https://platform.openai.com/docs/guides/structured-outputs"
+              >structured data</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <p>Let's say we have this schema</p>
+          <pre><code data-trim data-noescape class="language-python">
+class CalendarEvent(BaseModel):
+  name: str
+  date: str
+  participants: list[str]
+          </code></pre>
+        </section>
+
+        <section>
+          <p>Alice and Bob are going to a science fair on Friday</p>
+          <pre><code data-trim data-noescape class="language-python">
+response = client.responses.parse(
+  input=[
+    {"role": "system", "content": "Extract the event information."},
+    {
+      "role": "user",
+      "content": "Alice and Bob are going to a science fair on Friday.",
+    },
+  ],
+  text_format=CalendarEvent,
+)
+          </code></pre>
+        </section>
+
+        <section>
+          <p>Gives us...</p>
+          <pre><code data-trim data-noescape class="language-python">
+CalendarEvent(
+  name='Science Fair',
+  date='Friday',
+  participants=['Alice', 'Bob']
+)
+          </code></pre>
+        </section>
+
+        <section>
+          <p>We <strong>can't be sure to get the right information</strong></p>
+          <p>But we <strong>can be sure it fits our schema</strong></p>
+        </section>
+
+        <section>
+          <p>So how does that work?</p>
+        </section>
+
+        <section>
+          <p><strong>Constrained Decoding</strong> or "guided generation"</p>
+        </section>
+
+        <section>
+          <p>Transformers generate one token at a time</p>
+          <p>A probability distribution over possible tokens</p>
+        </section>
+
+        <section>
+          <p>With a schema, we <strong>constrain this set of tokens</strong></p>
+          <p>Only valid tokens that match the schema</p>
+        </section>
+
+        <section>
+          <p>
+            This allows us to extract <strong>anything</strong> from
+            <strong>any text</strong>
+          </p>
+        </section>
+
+        <section>
+          <h2>So... GraphRAG</h2>
+          <p class="fragment">How are these these technologies combined?</p>
+        </section>
+
+        <section>
+          <p>Let's visualize a simplified GraphRAG process</p>
         </section>
 
         <section>
           <p>First the dataset is preprocessed...</p>
         </section>
+
         <section>
-          <p>Entities and relations are extracted from the text</p>
-          <p class="fragment">Embedded for semantic search</p>
-          <p class="fragment">Added to the graph</p>
-          <p class="fragment">After which communities are calculated</p>
+          <p>
+            Entities and relations are <strong>extracted from documents</strong>
+          </p>
+          <p class="fragment"><strong>Embedded</strong> for semantic search</p>
+          <p class="fragment">Added to a graph database</p>
+          <p class="fragment">
+            And possibly, <strong>communities are calculated</strong>
+          </p>
         </section>
 
         <section>
@@ -2749,7 +2838,7 @@ embedding = model.encode(sentence)
               </g>
             </g>
           </svg>
-          <p>Then we fetch related entities and communities</p>
+          <p>The graph provides related entities and communities</p>
         </section>
 
         <section data-transition="none" class="centered">
@@ -3423,34 +3512,62 @@ embedding = model.encode(sentence)
         </section>
 
         <section>
-          <p>Send all that together with the question to the model</p>
+          <p>
+            That information, together with the question, gets sent to the
+            language model
+          </p>
         </section>
 
         <section>
           <pre><code class="language-text">---Role---
-You are a helpful assistant responding to questions about data in the tables provided.
+You are a helpful assistant responding to questions about
+data in the tables provided.
 
 ---Goal---
-Generate a response that responds to the user's question, summarizing all information in the input data tables, and incorporating any relevant general knowledge.
-If you don't know the answer, just say so. Do not make anything up.
-Do not include information where the supporting evidence for it is not provided.
+Generate a response that responds to the user's question,
+summarizing all information in the input data tables, and
+incorporating any relevant general knowledge. If you don't
+know the answer, just say so. Do not make anything up. Do
+not include information where the supporting evidence for it
+is not provided.
 
 ---Data tables---
 {context_data}</code></pre>
         </section>
 
         <section>
-          <p>And get better answers based on your data</p>
+          <p>
+            Which should lead to answers based on the information in your graph
+          </p>
         </section>
 
         <section>
           <p>But why is this cool?</p>
           <p class="fragment">
-            <strong>Because we can visualize the graph</strong>
+            <strong>Because we can learn a lot from this technique</strong>
           </p>
         </section>
 
-        <section data-background-image="graph.png"></section>
+        <section>
+          <p>GraphRAG is a <strong>gateway technology</strong></p>
+        </section>
+
+        <section>
+          <p>
+            A intersection of key technologies whose impact is <br />
+            <strong>still being discovered</strong>
+          </p>
+        </section>
+
+        <section>
+          <p>Should you GraphRAG?</p>
+          <p class="fragment">I don't know...</p>
+        </section>
+
+        <section>
+          <p>Should you play with these underlying concepts?</p>
+          <p class="fragment"><strong>Definitely</strong></p>
+        </section>
 
         <section>
           <h2>GraphRAG tools</h2>
