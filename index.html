@@ -1222,9 +1222,10 @@ embedding = model.encode(sentence)
 
         <section>
           <p><strong>Because high-dimensional geometry is weird</strong></p>
-          <p class="fragment">
-            All points become roughly equidistant with Euclidean distance
-          </p>
+          <p>All points become equidistant with Euclidean distance</p>
+          <div style="margin-top: 40px">
+            <svg id="dimension-distance-chart" width="900" height="300"></svg>
+          </div>
         </section>
 
         <section>
@@ -3831,6 +3832,139 @@ is not provided.
         .attr("stroke", "#000")
         .attr("stroke-width", 2.5)
         .attr("stroke-dasharray", "5,3");
+
+      // Initialize dimension-distance chart
+      const dimDistSvg = d3.select("#dimension-distance-chart");
+      const dimWidth = 900;
+      const dimHeight = 300;
+      const margin = { top: 20, right: 30, bottom: 50, left: 95 };
+      const chartWidth = dimWidth - margin.left - margin.right;
+      const chartHeight = dimHeight - margin.top - margin.bottom;
+
+      const dimG = dimDistSvg
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+      // Simulate distance distributions for different dimensions
+      function generateDistances(dimensions, numPoints = 100000) {
+        const distances = [];
+        for (let i = 0; i < numPoints; i++) {
+          // Generate two random points in n-dimensional space
+          let sumSq = 0;
+          for (let d = 0; d < dimensions; d++) {
+            const diff = Math.random() - Math.random();
+            sumSq += diff * diff;
+          }
+          // Normalize by sqrt(dimensions) to account for dimension scaling
+          distances.push(Math.sqrt(sumSq / dimensions));
+        }
+        return distances;
+      }
+
+      // Calculate histogram for each dimension
+      const dims = [2, 20, 100, 500];
+      const histData = dims.map((dim) => {
+        const distances = generateDistances(dim);
+        const bins = d3
+          .bin()
+          .domain([0, d3.max(distances)])
+          .thresholds(30)(distances);
+        return { dim, bins };
+      });
+
+      // Create scales
+      const xScale = d3
+        .scaleLinear()
+        .domain([0, d3.max(histData.flatMap((h) => h.bins.map((b) => b.x1)))])
+        .range([0, chartWidth]);
+
+      const yScale = d3
+        .scaleLinear()
+        .domain([
+          0,
+          d3.max(histData.flatMap((h) => h.bins.map((b) => b.length))),
+        ])
+        .range([chartHeight, 0]);
+
+      // Color scale for different dimensions
+      const colorScale = d3
+        .scaleOrdinal()
+        .domain(dims)
+        .range(["#4299e1", "#48bb78", "#ed8936", "#9f7aea"]);
+
+      // Draw histograms as lines
+      histData.forEach((data) => {
+        const line = d3
+          .line()
+          .x((d) => xScale((d.x0 + d.x1) / 2))
+          .y((d) => yScale(d.length))
+          .curve(d3.curveMonotoneX);
+
+        dimG
+          .append("path")
+          .datum(data.bins)
+          .attr("fill", "none")
+          .attr("stroke", colorScale(data.dim))
+          .attr("stroke-width", 3)
+          .attr("d", line);
+      });
+
+      // Add axes
+      const xAxis = dimG
+        .append("g")
+        .attr("transform", `translate(0, ${chartHeight})`)
+        .call(d3.axisBottom(xScale));
+
+      xAxis.selectAll("text").attr("font-size", "16px");
+
+      xAxis
+        .append("text")
+        .attr("x", chartWidth / 2)
+        .attr("y", 40)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .text("Euclidean Distance");
+
+      const yAxis = dimG.append("g").call(d3.axisLeft(yScale).ticks(5));
+
+      yAxis.selectAll("text").attr("font-size", "16px");
+
+      yAxis
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -chartHeight / 2)
+        .attr("y", -75)
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .text("Frequency");
+
+      // Add legend
+      const legend = dimG
+        .append("g")
+        .attr("transform", `translate(${chartWidth - 120}, 20)`);
+
+      dims.forEach((dim, i) => {
+        const lg = legend
+          .append("g")
+          .attr("transform", `translate(0, ${i * 25})`);
+
+        lg.append("line")
+          .attr("x1", 0)
+          .attr("x2", 30)
+          .attr("y1", 0)
+          .attr("y2", 0)
+          .attr("stroke", colorScale(dim))
+          .attr("stroke-width", 3);
+
+        lg.append("text")
+          .attr("x", 38)
+          .attr("y", 5)
+          .attr("fill", "currentColor")
+          .attr("font-size", "18px")
+          .text(`${dim}D`);
+      });
 
       Reveal.initialize({
         history: true,
