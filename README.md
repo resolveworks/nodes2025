@@ -152,4 +152,4 @@ To view the slides locally, simply open `index.html` in a browser.
 
 ---
 
-*Workshop presented at [Neo4j Nodes 2025](https://neo4j.com/nodes/) — slides available at [nodes25.resolve.works](http://nodes25.resolve.works)*
+*Workshop presented at [Neo4j Nodes 2025](https://neo4j.com/nodes/) — slides available at [resolveworks.github.io/nodes2025](https://resolveworks.github.io/nodes2025/)*
